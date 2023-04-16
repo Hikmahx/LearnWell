@@ -1,4 +1,5 @@
 const Topic = require("../models/topic");
+import { validationResult } from "express-validator";
 
 import { Response, Request } from "express";
 
@@ -37,6 +38,69 @@ export const getTopic = async (req: Request, res: Response) => {
       return res.status(404).json({ msg: "Topic not found" });
     }
 
+    res.status(500).send("Server Error");
+  }
+};
+
+
+// @ route POST /api/topics
+// @ desc  Create new topic
+// @ access Private
+export const createTopic = async (req: Request, res: Response) => {
+  // Validate req.body
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    let topic = new Topic(req.body);
+    let newTopic = await topic.save();
+    res.status(201).json(newTopic);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
+
+// @ route PUT /api/topics
+// @ desc  Update topic
+// @ access Private
+export const updateTopic = async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const topic = await Topic.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    if (!topic) {
+      return res.status(404).json({ msg: "Topic not found" });
+    }
+    res.status(200).json(topic);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
+// @ route DELETE /api/topics/:id
+// @ desc  Delete a topic
+// @ access Private
+export const deleteTopic = async (req: Request, res: Response) => {
+  try {
+    const topic = await Topic.findByIdAndDelete(req.params.id);
+    if (!topic) {
+      return res.status(404).json({ msg: "Topic not found" });
+    }
+    res.status(200).json({ msg: "Topic is successfully deleted" });
+  } catch (err: any) {
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 };
