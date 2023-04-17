@@ -11,7 +11,9 @@ import { body } from "express-validator";
 const router = express.Router();
 
 // GET all topics by subject id
-router.get("/", getTopicsBySubject);
+router.get('/subject/:id/topics', getTopicsBySubject);
+
+// router.get("/", getTopicsBySubject);
 
 // GET a topic
 router.get("/:id", getTopic);

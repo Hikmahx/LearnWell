@@ -18,6 +18,6 @@ app.use(cors());
 
 // ROUTES
 app.use("/api/subjects", subjects);
-app.use("/api/topic", topics);
+app.use("/api/topics", topics);
 
 app.listen(PORT, () => console.log("This is listening on PORT: " + PORT));
