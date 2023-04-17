@@ -9,7 +9,7 @@ const Topic = require("../models/topic");
 // @ access Public
 export const getSubjects = async (req: Request, res: Response) => {
   try {
-    const subjects = await Subject.find();
+    const subjects = await Subject.find().populate('topics');;
     res.status(200).json(subjects);
   } catch (err: any) {
     console.error(err.message);
@@ -22,7 +22,7 @@ export const getSubjects = async (req: Request, res: Response) => {
 // @ access Public
 export const getSubjectById = async (req: Request, res: Response) => {
   try {
-    const subject = await Subject.findById(req.params.id);
+    const subject = await Subject.findById(req.params.id).populate("topics");
     if (!subject) {
       return res.status(404).json({ msg: "Subject not found" });
     }
@@ -77,7 +77,7 @@ export const createSubject = async (req: Request, res: Response) => {
           });
           // If the topic has been created into this subject
           if (existingTopic) {
-            console.log("this has already been added");
+            console.log("this has been added");
             // Use the existing topic's id
             return existingTopic._id;
           } else {
@@ -99,7 +99,7 @@ export const createSubject = async (req: Request, res: Response) => {
     });
 
     const newSubject = await subject.save();
-    const populatedSubject = await Subject.findById(newSubject._id);
+    const populatedSubject = await Subject.findById(newSubject._id).populate("topics");
     res.status(201).json(populatedSubject);
   } catch (err: any) {
     console.error(err.message);
