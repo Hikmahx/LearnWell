@@ -77,7 +77,7 @@ export const createSubject = async (req: Request, res: Response) => {
             title,
             video,
             description,
-            subject: null, // set the subjectId to null initially
+            subjects: null, // set the subjectId to null initially
           });
           const savedTopic = await newTopic.save();
           return savedTopic._id;
@@ -120,9 +120,12 @@ export const createSubject = async (req: Request, res: Response) => {
     const newSubject = await subject.save();
 
     // Assign the subject id to each of the topics in the newly created subject
+    // Check if the new subject ID is already in the array of subjects for this topic.
+    // If not, add it using the spread operator to avoid duplicates.
     for (let i = 0; i < newSubject.topics.length; i++) {
+      const topic = await Topic.findById(newSubject.topics[i]);
       await Topic.findByIdAndUpdate(newSubject.topics[i], {
-        subject: newSubject._id,
+        subjects: [...new Set([...(topic.subjects || []), newSubject._id])],
       });
     }
 

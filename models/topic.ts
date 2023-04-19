@@ -19,11 +19,12 @@ const topicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  subject: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Subject",
-    // required: true,
-  },
+  subjects: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Subject",
+    },
+  ],
 });
 
 const Topic = mongoose.model("Topic", topicSchema);
