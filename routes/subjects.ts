@@ -28,7 +28,7 @@ router.post(
 router.put(
   "/:id",
   body("title", "Title is required").not().isEmpty(),
-  body("topics", "Topics is required").isArray({ min: 1 }),
+  // body("topics", "Topics is required").isArray({ min: 1 }),
   updateSubject
 );
 
