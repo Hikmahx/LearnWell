@@ -24,6 +24,7 @@ router.post(
   body("title", "Title is required").not().isEmpty(),
   body("description", "Description is required").not().isEmpty(),
   body("video", "Video is required").not().isEmpty(),
+  body("subjectId", "Its subject is required").not().isEmpty(),
   createTopic
 );
 
