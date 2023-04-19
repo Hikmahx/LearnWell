@@ -13,6 +13,10 @@ export const getTopicsBySubject = async (req: Request, res: Response) => {
       "title"
     );
 
+    if (!topics  || topics.length === 0) {
+      return res.status(404).json({ msg: "No topics found for this subject" });
+    }
+
     res.status(200).json({ topics });
   } catch (err: any) {
     console.error(err.message);
