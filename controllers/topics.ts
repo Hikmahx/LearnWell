@@ -9,13 +9,18 @@ import { Response, Request } from "express";
 // @ access Public
 export const getTopicsBySubject = async (req: Request, res: Response) => {
   try {
-    const topics = await Topic.find({ subjectId: req.params.subjectId }).select(
+    const topics = await Topic.find({ subjects: req.params.subjectId }).select(
       "title"
     );
 
     res.status(200).json({ topics });
   } catch (err: any) {
     console.error(err.message);
+
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Subject not found" });
+    }
+
     res.status(500).send("Server Error");
   }
 };
@@ -42,7 +47,6 @@ export const getTopic = async (req: Request, res: Response) => {
     res.status(500).send("Server Error");
   }
 };
-
 
 // @ route POST /api/topics
 // @ desc  Create new topic
@@ -113,7 +117,7 @@ export const updateTopic = async (req: Request, res: Response) => {
   try {
     // Make sure the subject can't be changed by excluding subject from updatedFields
     // SIDE NOTE: TELL USERS THRU THE FRONTEND THEY CAN'T UPDATE THE SUBJECT
-    const { subject, ...updatedFields } = req.body; 
+    const { subject, ...updatedFields } = req.body;
 
     const topic = await Topic.findByIdAndUpdate(
       req.params.id,
