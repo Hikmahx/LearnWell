@@ -9,7 +9,7 @@ const Topic = require("../models/topic");
 // @ access Public
 export const getSubjects = async (req: Request, res: Response) => {
   try {
-    const subjects = await Subject.find().populate('topics');;
+    const subjects = await Subject.find().populate("topics");
     res.status(200).json(subjects);
   } catch (err: any) {
     console.error(err.message);
@@ -50,47 +50,66 @@ export const createSubject = async (req: Request, res: Response) => {
 
     const { title, topics } = req.body;
 
-    // Create new topics
-    // const newTopics: any[] = [];
-    // topics.forEach(async (topic: any) => {
+    // Check if any two topics have the same title
+    const topicTitles = topics.map((topic: any) => topic.title);
+    const uniqueTopicTitles = new Set(topicTitles);
+    if (topicTitles.length !== uniqueTopicTitles.size) {
+      return res.status(400).json({
+        message:
+          "Duplicate topic titles provided, topic title should be unique in a subject",
+      });
+    }
 
+    // Use Promise.all to wait for all the topics to be created before returning the newTopics array
     const newTopics = await Promise.all(
       topics.map(async (topic: any) => {
-        // Check if an id is given
-        if (mongoose.Types.ObjectId.isValid(topic)) {
-          // Check if the topic in already in DB
-          const existingTopic = await Topic.findById(topic);
-          if (existingTopic) {
-            console.log("this id already exist in the database");
-            // Use the existing topic's id
-            return existingTopic._id;
-          } else {
-            return res.status(400).json({ error: "Invalid topic ID" });
-          }
-          // If it is not an id but an object given
+        // Check if the topic already exists
+        const existingTopic = await Topic.findOne({
+          title: topic.title,
+        });
+        // If the topic has already been created, use the existing topic's id
+        if (existingTopic) {
+          return existingTopic._id;
         } else {
-          // Check if the topic already exists
-          const existingTopic = await Topic.findOne({
-            title: topic.title,
-            video: topic.video,
-            description: topic.description,
+          // If it is a new topic, create a new topic
+          const { title, video, description } = topic;
+          const newTopic = new Topic({
+            title,
+            video,
+            description,
+            subject: null, // set the subjectId to null initially
           });
-          // If the topic has been created into this subject
-          if (existingTopic) {
-            console.log("this has been added");
-            // Use the existing topic's id
-            return existingTopic._id;
-          } else {
-            // A new topic will be created
-            const { title, video, description } = topic;
-            const newTopic = new Topic({ title, video, description });
-            const savedTopic = await newTopic.save();
-            // newTopics.push(savedTopic._id);
-            return savedTopic._id;
-          }
+          const savedTopic = await newTopic.save();
+          return savedTopic._id;
         }
       })
     );
+
+    const existingSubject = await Subject.findOne({
+      title: req.body.title,
+    });
+    if (existingSubject) {
+      // If the subject has already been created into this subject
+      return res
+        .status(400)
+        .json({ message: "This subject title already exists" });
+    }
+
+    // This code block finds an existing subject by its title, or creates a new one if it does not already exist.
+    // It updates the subject by adding all the new topics to its topics array, using the $addToSet operator to avoid adding duplicate topics.
+    // The { new: true, upsert: true } option ensures that if the subject does not already exist, it is created as a new document in the collection.
+    // The updated or newly created subject is returned as newSubject.
+    // const newSubject = await Subject.findOneAndUpdate(
+    //   { title },
+    //   { $addToSet: { topics: { $each: newTopics } } },
+    //   { new: true, upsert: true }
+    // );
+
+    // const newSubject = await Subject.findOneAndUpdate(
+    //   { title, "topics.title": { $nin: newTopics.map((t: any) => t.title) } },
+    //   { $addToSet: { topics: { $each: newTopics } } },
+    //   { new: true, upsert: true }
+    // );
 
     // Create new subject
     const subject = await new Subject({
@@ -99,11 +118,29 @@ export const createSubject = async (req: Request, res: Response) => {
     });
 
     const newSubject = await subject.save();
-    const populatedSubject = await Subject.findById(newSubject._id).populate("topics");
+
+    // Assign the subject id to each of the topics in the newly created subject
+    for (let i = 0; i < newSubject.topics.length; i++) {
+      await Topic.findByIdAndUpdate(newSubject.topics[i], {
+        subject: newSubject._id,
+      });
+    }
+
+    // Populate the subject with its topics and send the response
+    const populatedSubject = await Subject.findById(newSubject._id).populate(
+      "topics"
+    );
     res.status(201).json(populatedSubject);
   } catch (err: any) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+    // Error for if the same title exists in a subject
+    if (err.code === 11000 && err.keyPattern && err.keyPattern.title) {
+      res
+        .status(400)
+        .json({ message: "This topic already exists in this subject" });
+    } else {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
   }
 };
 
