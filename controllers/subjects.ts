@@ -173,7 +173,7 @@ export const updateSubject = async (req: Request, res: Response) => {
 };
 
 // @ route DELETE /api/subjects/:id
-// @ desc  Delete a subject
+// @ desc  Delete a subject (and all its topics)
 // @ access Private
 export const deleteSubject = async (req: Request, res: Response) => {
   try {
@@ -181,7 +181,11 @@ export const deleteSubject = async (req: Request, res: Response) => {
     if (!subject) {
       return res.status(404).json({ msg: "Subject not found" });
     }
-    res.status(200).json({ msg: "Subject is successfully deleted" });
+
+    // Delete all topics with the subject ID of the deleted subject
+    await Topic.deleteMany({ subjects: subject._id });
+
+    res.status(200).json({ msg: "Subject is successfully deleted with its topics" });
   } catch (err: any) {
     console.error(err.message);
     res.status(500).send("Server Error");
