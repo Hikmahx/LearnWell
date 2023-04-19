@@ -4,6 +4,12 @@ const topicSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    unique: true,
+    //  Ensures that each title is unique within a subject, but not necessarily across all subjects in the database
+    index: {
+      unique: true,
+      partialFilterExpression: { subject_id: { $exists: true } },
+    },
   },
   video: {
     type: String,
@@ -12,6 +18,11 @@ const topicSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
+  },
+  subject: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Subject",
+    // required: true,
   },
 });
 
