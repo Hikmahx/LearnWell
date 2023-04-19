@@ -1,4 +1,5 @@
 const Topic = require("../models/topic");
+const Subject = require("../models/subject");
 import { validationResult } from "express-validator";
 
 import { Response, Request } from "express";
@@ -47,6 +48,8 @@ export const getTopic = async (req: Request, res: Response) => {
 // @ desc  Create new topic
 // @ access Private
 export const createTopic = async (req: Request, res: Response) => {
+  // SIDE NOTE: I THINK THE TOPIC SHOULD ONLY BE CREATED IF IT HAS A SUBJECT IT BELONGS TO
+
   // Validate req.body
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -54,15 +57,49 @@ export const createTopic = async (req: Request, res: Response) => {
   }
 
   try {
-    let topic = new Topic(req.body);
-    let newTopic = await topic.save();
-    res.status(201).json(newTopic);
+    // let topic = new Topic(req.body);
+    // let newTopic = await topic.save();
+    // res.status(201).json(newTopic);
+
+    const { title, video, description, subjectId } = req.body;
+    // Check if the subject exists
+    const subject = await Subject.findById(subjectId);
+    if (!subject) {
+      return res.status(404).json({ error: "Subject not found" });
+    }
+
+    // Check if this title already exists with the given subject id
+    const existingTopic = await Topic.findOne({
+      title,
+      subject: subjectId,
+    });
+    // If the topic has already been created into this subject
+    if (existingTopic) {
+      return res
+        .status(400)
+        .json({ msg: "This topic already exists in this subject provided" });
+    } else {
+      // If it is simply a new topic, a new topic will be created
+      // Create a new topic
+      const topic = new Topic({
+        title,
+        video,
+        description,
+        subject: subjectId, // Set the subject of the topic to the given subject id
+      });
+      const newTopic = await topic.save();
+
+      // Add the topic (using the topic id) to the subject's topics array
+      subject.topics.push(newTopic._id);
+      await subject.save();
+
+      res.status(201).json(newTopic);
+    }
   } catch (err: any) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 };
-
 
 // @ route PUT /api/topics
 // @ desc  Update topic
@@ -74,9 +111,13 @@ export const updateTopic = async (req: Request, res: Response) => {
   }
 
   try {
+    // Make sure the subject can't be changed by excluding subject from updatedFields
+    // SIDE NOTE: TELL USERS THRU THE FRONTEND THEY CAN'T UPDATE THE SUBJECT
+    const { subject, ...updatedFields } = req.body; 
+
     const topic = await Topic.findByIdAndUpdate(
       req.params.id,
-      { $set: req.body },
+      { $set: updatedFields },
       { new: true }
     );
     if (!topic) {
