@@ -13,7 +13,7 @@ export const getTopicsBySubject = async (req: Request, res: Response) => {
       "title"
     );
 
-    if (!topics  || topics.length === 0) {
+    if (!topics || topics.length === 0) {
       return res.status(404).json({ msg: "No topics found for this subject" });
     }
 
@@ -79,7 +79,7 @@ export const createTopic = async (req: Request, res: Response) => {
     // Check if this title already exists with the given subject id
     const existingTopic = await Topic.findOne({
       title,
-      subject: subjectId,
+      subjects: subjectId,
     });
     // If the topic has already been created into this subject
     if (existingTopic) {
@@ -93,7 +93,7 @@ export const createTopic = async (req: Request, res: Response) => {
         title,
         video,
         description,
-        subject: subjectId, // Set the subject of the topic to the given subject id
+        subjects: subjectId, // Set the subject of the topic to the given subject id
       });
       const newTopic = await topic.save();
 
@@ -101,7 +101,14 @@ export const createTopic = async (req: Request, res: Response) => {
       subject.topics.push(newTopic._id);
       await subject.save();
 
-      res.status(201).json(newTopic);
+      // res.status(201).json(newTopic);
+
+      // Populate the subject with the updated topics array
+      const updatedSubject = await Subject.findById(subjectId).populate(
+        "topics"
+      );
+
+      res.status(201).json({ newTopic, updatedSubject });
     }
   } catch (err: any) {
     console.error(err.message);
