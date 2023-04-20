@@ -5,6 +5,7 @@ import {
   deleteSubject,
   getSubjectById,
   getSubjects,
+  searchSubjectsAndTopics,
   updateSubject,
 } from "../controllers/subjects";
 
@@ -12,6 +13,9 @@ const router = express.Router();
 
 // GET all subjects
 router.get("/", getSubjects);
+
+// SEARCH Subjects and Topics
+router.get("/search", searchSubjectsAndTopics);
 
 // GET a subject by ID
 router.get("/:id", getSubjectById);

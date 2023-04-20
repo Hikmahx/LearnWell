@@ -191,3 +191,48 @@ export const deleteSubject = async (req: Request, res: Response) => {
     res.status(500).send("Server Error");
   }
 };
+
+// @ route GET /api/subjects?search=query
+// @ desc  Search subjects and topics title
+// @ access Public
+export const searchSubjectsAndTopics = async (req: Request, res: Response) => {
+  try {
+    const query = req.query.q as string;
+
+    // Check if the kind of query isn't q
+    if (!query) {
+      // Check if a query is not provided
+      if (Object.keys(req.query).join(", ") === "") {
+        return res.status(400).json({
+          msg: "Search query not provided. Use 'q' for search query",
+        });
+      } else {
+        // If the query provided doesn't exist
+        return res.status(400).json({
+          msg: `Search query '${Object.keys(req.query).join(
+            ", "
+          )}' not available`,
+        });
+      }
+    }
+
+    // subjects search (returns subjects and array of topics (only their id and title) that belong to the subjects)
+    const subjects = await Subject.find({
+      title: { $regex: query, $options: "i" },
+    })
+      // .populate("topics");
+      .populate({ path: "topics", select: "id title" });
+
+    // topics search (returns topics and array of subjects (only their id and title) they can be found in)
+    const topics = await Topic.find({
+      title: { $regex: query, $options: "i" },
+    })
+      // .populate("subjects");
+      .populate({ path: "subjects", select: "id title" });
+
+    res.status(200).json({ subjects, topics });
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
