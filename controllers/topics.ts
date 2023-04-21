@@ -128,18 +128,37 @@ export const updateTopic = async (req: Request, res: Response) => {
   try {
     // Make sure the subject can't be changed by excluding subject from updatedFields
     // SIDE NOTE: TELL USERS THRU THE FRONTEND THEY CAN'T UPDATE THE SUBJECT
-    const { subject, ...updatedFields } = req.body;
+    const { title, subjects, ...updatedFields } = req.body;
 
-    const topic = await Topic.findByIdAndUpdate(
-      req.params.id,
-      { $set: updatedFields },
-      { new: true }
-    );
+    const topic = await Topic.findById(req.params.id);
     if (!topic) {
       return res.status(404).json({ msg: "Topic not found" });
     }
-    res.status(200).json(topic);
+
+    // Check if the new topic title already exists in any of the subjects that the topic belongs to
+    const existingTitleInSubjects = await Subject.exists({
+      _id: { $in: subjects },
+      "topics.title": { $regex: new RegExp(`^${title}$`, "i") },
+    });
+    if (existingTitleInSubjects) {
+      return res
+        .status(400)
+        .json({ msg: "Topic title already exists in one of the subjects" });
+    }
+
+    // Update the topic
+    const updatedTopic = await Topic.findByIdAndUpdate(
+      req.params.id,
+      { $set: { title, ...updatedFields } },
+      { new: true }
+    );
+
+    res.status(200).json(updatedTopic);
   } catch (err: any) {
+    if (err.code === 11000) {
+      return res.status(400).json({ msg: "Topic title already exists" });
+    }
+    
     console.error(err.message);
     res.status(500).send("Server Error");
   }
