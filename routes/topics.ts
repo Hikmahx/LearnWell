@@ -11,7 +11,7 @@ import { body } from "express-validator";
 const router = express.Router();
 
 // GET all topics by subject id
-router.get('/subject/:subjectId/topics', getTopicsBySubject);
+router.get("/subject/:subjectId/topics", getTopicsBySubject);
 
 // router.get("/", getTopicsBySubject);
 
@@ -29,13 +29,7 @@ router.post(
 );
 
 // UPDATE a topic
-router.put(
-  "/:id",
-  body("title", "Title is required").not().isEmpty(),
-  body("description", "Description is required").not().isEmpty(),
-  body("video", "Video is required").not().isEmpty(),
-  updateTopic
-);
+router.put("/:id", updateTopic);
 
 // DELETE a topic
 router.delete("/:id", deleteTopic);
