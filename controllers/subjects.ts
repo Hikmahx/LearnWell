@@ -196,7 +196,18 @@ export const deleteSubject = async (req: Request, res: Response) => {
     }
 
     // Delete all topics with the subject ID of the deleted subject
-    await Topic.deleteMany({ subjects: subject._id });
+    const topics = await Topic.find({ subjects: subject._id });
+
+    for (const topic of topics) {
+      if (topic.subjects.length > 1) {
+        // If the topic is associated with other subjects, remove only the subject ID from its subjects array
+        topic.subjects.pull(subject._id);
+        await topic.save();
+      } else {
+        // If the topic is associated with only this subject, delete the topic
+        await Topic.findByIdAndDelete(topic._id);
+      }
+    }
 
     res.status(200).json({ msg: "Subject is successfully deleted with its topics" });
   } catch (err: any) {
