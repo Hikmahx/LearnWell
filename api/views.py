@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from main.models import Subject, Topic
 from .serializers import SubjectSerializer, TopicSerializer
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 
@@ -11,7 +12,55 @@ class SubjectListView(generics.ListAPIView):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
 
-
+    def post(self, request, *args, **kwargs):
+        # Validate req.body
+        serializer = SubjectSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        try:
+            # Check if topics field is empty (should have at least one topic)
+            if not request.data.get('topics'):
+                return Response({
+                    'message': 'Topics field cannot be empty'
+                }, status=status.HTTP_400_BAD_REQUEST)
+                
+            # Check if any two topics have the same title
+            topics = request.data.get('topics')
+            topic_titles = [topic.get('title') for topic in topics]
+            if len(set(topic_titles)) != len(topic_titles):
+                return Response({
+                    'message': 'Duplicate topic titles provided, topic title should be unique in a subject'
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Create new topics or use existing ones
+            new_topics = []
+            for topic in topics:
+                # Check if the topic already exists
+                existing_topic = Topic.objects.filter(title=topic['title']).first()
+                # If the topic has already been created, return the existing topic
+                if existing_topic:
+                    new_topics.append(existing_topic)
+                else:
+                    # If it is a new topic, create a new topic
+                    new_topic = Topic(title=topic['title'], video=topic.get('video'), description=topic.get('description'))
+                    new_topic.save()
+                    new_topics.append(new_topic)
+                    
+            # Create the new subject with the provided title and topics
+            new_subject = Subject(title=request.data['title'])
+            new_subject.save()
+            new_subject.topics.set(new_topics)
+            
+            # Serialize the newly created subject and return it in the response
+            serializer = SubjectSerializer(new_subject)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            print(e)
+            return Response({
+                'message': 'An error occurred while creating the subject'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+            
 class SubjectDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
