@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from main.models import Subject, Topic
 from .serializers import SubjectSerializer, TopicSerializer
 from django.core.exceptions import ValidationError
+from django.db.models import Prefetch
 
 # Create your views here.
 
@@ -101,6 +102,49 @@ class SubjectDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         subject.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+class SearchSubjectsAndTopicsView(generics.ListAPIView):
+    serializer_class = SubjectSerializer
+
+    def get(self, request, *args, **kwargs):
+        try:
+
+            query = request.query_params.get('q')
+
+            # Check if the kind of query isn't q
+            if not query:
+                # Check if a query is not provided
+                if not request.query_params:
+                    return Response({
+                        'message': "Search query not provided. Use 'q' for search query"
+                    }, status=status.HTTP_400_BAD_REQUEST)
+                else:
+                    # If the query provided doesn't exist
+                    return Response({
+                        'message': f"Search query '{', '.join(request.query_params)}' not available"
+                    }, status=status.HTTP_400_BAD_REQUEST)
+
+
+            # subjects search (returns subjects and array of topics that belong to the subjects)
+            subjects = Subject.objects.filter(title__icontains=query).prefetch_related('topics')
+            subject_serializer = SubjectSerializer(subjects, many=True)
+
+            # topics search (returns topics and array of subjects they can be found in)
+            topics = Topic.objects.filter(title__icontains=query).prefetch_related('subjects')
+            topic_serializer = TopicSerializer(topics, many=True)
+
+            return Response({
+                'subjects': subject_serializer.data,
+                'topics': topic_serializer.data
+            }, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            print(e)
+            return Response({
+                'message': 'An error occurred while searching subjects and topics'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class TopicListView(generics.ListAPIView):
