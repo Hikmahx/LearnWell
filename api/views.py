@@ -149,7 +149,15 @@ class SearchSubjectsAndTopicsView(generics.ListAPIView):
 
 class TopicListView(generics.ListAPIView):
     serializer_class = TopicSerializer
+    queryset = Topic.objects.all()
+
+
+class TopicBySubjectView(generics.ListAPIView):
+    serializer_class = TopicSerializer
 
     def get_queryset(self):
         subject_id = self.kwargs['subject_id']
-        return Topic.objects.filter(subject_id=subject_id)
+        
+        # Note: the "subjects" field on the Topic model creates a many-to-many relationship
+        # with the Subject model. We use "subjects__id" (double underscore) to filter by the ID of the related subject.
+        return Topic.objects.filter(subjects__id=subject_id)
