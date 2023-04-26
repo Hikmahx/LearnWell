@@ -150,7 +150,56 @@ class SearchSubjectsAndTopicsView(generics.ListAPIView):
 class TopicListView(generics.ListAPIView):
     serializer_class = TopicSerializer
     queryset = Topic.objects.all()
+    def post(self, request, *args, **kwargs):
+        # Validate req.body
+        serializer = TopicSerializer(data=request.data)
+        serializer.is_valid()
+        # If you want the rest framework to handle errors, add raise_exception=True to is_valid
+        # By setting raise_exception=True, you can simplify your code and avoid checking the errors property, 
+        # as any validation errors will raise an exception and can be handled in a try-except block, for example.
+        
+        try:
+            # Check if the subjects field is empty
+            if not request.data.get('subjects'):
+               return Response({
+                    'message': 'Subjects field cannot be empty, provide subject id'
+                }, status=status.HTTP_400_BAD_REQUEST)
 
+            # Check if the subjects exist
+            subject_ids = request.data.get('subjects')
+            subjects = Subject.objects.filter(pk__in=subject_ids)
+            if len(subjects) != len(subject_ids):
+                return Response({
+                    'message': 'One or more subjects not found'
+                }, status=status.HTTP_404_NOT_FOUND)
+
+            # Check if this title already exists with the given subject id
+            existing_topic = Topic.objects.filter(title=request.data['title'], subjects__in=subject_ids).exists()
+            if existing_topic:
+                return Response({
+                    'message': 'This topic already exists in this subject provided'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            # Create a new topic with the provided data
+            topic = serializer.save()
+
+            # Add the created topic to each subject's topics list
+            for subject in subjects:
+                subject.topics.add(topic)
+
+            # Construct the response data with the updated topic data
+            response_data = {
+                'title': topic.title,
+                'video': topic.video,
+                'description': topic.description,
+                'subjects': [subject.pk for subject in subjects]
+            }
+
+            return Response(response_data, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            print(e)
+            return Response({"message": "Server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class TopicBySubjectView(generics.ListAPIView):
     serializer_class = TopicSerializer
