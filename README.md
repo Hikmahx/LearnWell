@@ -15,6 +15,9 @@ This is the Python Django backend documentation for LearnWell. If you want the N
 - [Author](#author)
 
 
+<img width="1680" alt="learnwell-django" src="https://user-images.githubusercontent.com/54153841/234898582-22826548-43fb-4703-8721-464c9625ad34.png">
+
+
 ## Overview
 
 ### Introduction
