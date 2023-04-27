@@ -210,3 +210,49 @@ class TopicBySubjectView(generics.ListAPIView):
         # Note: the "subjects" field on the Topic model creates a many-to-many relationship
         # with the Subject model. We use "subjects__id" (double underscore) to filter by the ID of the related subject.
         return Topic.objects.filter(subjects__id=subject_id)
+
+class TopicDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer
+    
+    def get_object(self):
+        topic_id = self.kwargs['topic_id']
+        queryset = Topic.objects.all().prefetch_related('subjects')
+        return get_object_or_404(queryset, id=topic_id)
+    
+    # get the topic using the topic_id    
+    def get(self, request, topic_id):
+        topic = self.get_object()
+        serializer = self.serializer_class(topic)
+        data = serializer.data
+        data['subjects'] = [{'id': subject.id, 'title': subject.title} for subject in topic.subjects.all()]
+        return Response(data)
+    
+    def put(self, request, topic_id):
+        topic = self.get_object()
+        try:
+            subject_ids = request.data.get('subjects')
+            existing_topic = Topic.objects.filter(title=request.data['title'], subjects__in=subject_ids).exists()
+            if existing_topic:
+                return Response({
+                    'message': 'This topic already exists in this subject provided'
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Filter out the subjects field from the request data
+            data = {k: v for k, v in request.data.items() if k != 'subjects'}
+            # Use the serializer class to validate the request data, and allow partial updates
+            # partial is to ensure subjects is not required bcos subjects in the topic is not updated here
+            serializer = self.serializer_class(topic, data=data, partial=True) 
+                    
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            print(e)
+            return Response({"message": "Server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def delete(self, request, topic_id):
+        topic = self.get_object()
+        topic.delete()
+        return Response({'message': 'Topic is successfully deleted'}, status=status.HTTP_200_OK)
