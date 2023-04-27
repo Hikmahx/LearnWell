@@ -13,6 +13,8 @@ This is the Node.js Express backend documentation for LearnWell. If you want the
   - [Built With](#built-with)
 - [Author](#author)
 
+<img width="1680" alt="Screenshot 2023-04-27 at 3 49 46 PM" src="https://user-images.githubusercontent.com/54153841/234903526-c44b26d8-7ac8-44ee-9680-2329c9c36614.png">
+
 ## Overview
 
 ### Introduction
@@ -31,11 +33,12 @@ Users should be able to:
 - View detailed information for a single subject.
 - View detailed information for a single topic.
 
+
 ## Installation
 
 1. Clone the repository.
 2. Install the required packages using `npm install`.
-3. Create a database and update the database configuration in the `config/db.js` file.
+3. Create a database and update the database configuration in the `config/db.ts` file.
 4. Start the server: `npm start`
 
 ## Endpoints
@@ -71,6 +74,5 @@ Users should be able to:
 ## Author
 
 - Github - [Hikmah Yousuph](https://github.com/Hikmahx)
-- Frontend Mentor - [@Hikmahx](https://www.frontendmentor.io/profile/Hikmahx)
 - Email - [hikmayousuph@gmail.com](hikmayousuph@gmail.com)
 - LinkedIn - [Hikmah Yousuph](linkedin.com/in/hikmah-yousuph-449467204/)
