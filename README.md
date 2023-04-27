@@ -50,7 +50,7 @@ Users should be able to:
 | `/api/subjects/:id` | GET | Details of a single subject |
 | `/api/subjects/:id` | PUT | Update an existing subject |
 | `/api/subjects/:id` | DELETE | Delete a single subject |
-| `/api/search` | GET | Search for subjects and topics |
+| `/api/search?q={subject/topic title}` | GET | Search for subjects and topics |
 | `/api/topics` | GET | List of all topics |
 | `/api/topics` | POST | Create a new topic |
 | `/api/topics/:id` | GET | Details of a single topic |
