@@ -11,10 +11,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Open Sans', 'sans-serif'],
       },
       colors: {
-        'blue': '#1522F1',
+        'blue': '#146BFB',
         'soft-red': '#EA5353',
         'yellow': '#FECF63',
         'purple': '#9B51E0',
