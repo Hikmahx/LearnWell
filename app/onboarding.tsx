@@ -1,4 +1,4 @@
-import { View, Text, Button, Image } from "react-native";
+import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import React from "react";
 // import tw from "twrnc";
 import tw from "../lib/tailwind";
@@ -13,9 +13,7 @@ import Triangle from "../assets/images/triangle.svg";
 
 const Onboarding = () => {
   return (
-    <View
-      style={tw`relative font-sans h-full w-full bg-blue pb-12`}
-    >
+    <View style={tw`relative font-sans h-full w-full bg-blue pb-12`}>
       {/* <BgImage style={tw`w-full  h-[796px] absolute inset-x-0 `} /> */}
       <View style={tw`px-4 items-center`}>
         <View style={tw`mt-16 mb-6 items-center`}>
@@ -33,16 +31,14 @@ const Onboarding = () => {
             <Image source={Circle} style={tw`h-full -z-10`} />
           </View>
         </View>
-        <Link
-          href="/register"
-          style={tw`bg-yellow font-semibold py-3 text-black text-lg text-center rounded-full w-full max-w-md mt-4`}
+        <TouchableOpacity
+          style={tw`bg-yellow py-3 rounded-full w-full max-w-md mt-4`}
         >
-          Get Started
-        </Link>
-        <Square style={[tw`absolute left-0 top-1/4`, {zIndex:-1}]} />
+          <Link style={tw`font-semibold text-lg text-black text-center mx-auto w-full`} href="/register">Get Started</Link>
+        </TouchableOpacity>
+        <Square style={[tw`absolute left-0 top-1/4`, { zIndex: -1 }]} />
 
         <Triangle style={tw`absolute right-0 top-1/2`} />
-
       </View>
     </View>
   );
