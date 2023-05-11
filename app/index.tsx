@@ -11,7 +11,7 @@ import Circle from "../assets/images/circle-blur.png";
 import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 
-export default function App() {
+const Home = () => {
   const navigation = useNavigation();
   const router = useRouter();
 
@@ -36,7 +36,7 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView style={[tw`font-['Open Sans'] h-full w-full bg-blue`]}>
+    <SafeAreaView style={[tw`font-sans h-full w-full bg-blue`]}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -53,4 +53,6 @@ export default function App() {
       </View>
     </SafeAreaView>
   );
-}
+};
+
+export default Home;
