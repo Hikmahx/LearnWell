@@ -11,11 +11,15 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Button,
+  Image,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import tw from "twrnc";
 import Logo from "../assets/images/logo.svg";
-import { Svg, Path, G, Mask } from 'react-native-svg';
+import { Svg, Path, G, Mask } from "react-native-svg";
+import Google from "../assets/images/google-icon.png";
+import Fb from "../assets/images/fb-icon.png";
+import { Link } from "expo-router";
 
 type FormData = {
   firstName: string;
@@ -145,7 +149,6 @@ const RegisterForm = () => {
               </Text>
             )}
           </View>
-
           <View style={tw`w-full mb-4`}>
             <Controller
               control={control}
@@ -239,7 +242,6 @@ const RegisterForm = () => {
               </Text>
             )}
           </View>
-
           <View style={tw`w-full mb-4`}>
             <Controller
               control={control}
@@ -462,10 +464,43 @@ const RegisterForm = () => {
               accessibilityRole="button"
               accessibilityLabel="Register"
             >
-              <Text style={tw`text-white font-bold text-center`}>
+              <Text style={tw`text-white font-bold text-center text-lg`}>
                 Create Account
               </Text>
             </TouchableOpacity>
+          </View>
+          <View
+            style={tw`items-center flex-row justify-between w-full mt-5 mb-4`}
+          >
+            <View style={tw`border-b flex-1 w-full border-[#B5B5B5]`} />
+            <Text style={tw`mx-4 text-[#B5B5B5]`}>Or sign in with</Text>
+            <View style={tw`border-b flex-1 w-full border-[#B5B5B5]`} />
+          </View>
+
+          <View style={tw`flex-row w-full gap-x-4`}>
+            <View
+              style={[
+                tw`py-4 px-6 shadow-md rounded-xl flex-1 w-full flex-row bg-white items-center text-base`,
+              ]}
+            >
+              <Image source={Google} style={tw``} />
+              <Text style={tw`mx-3 font-bold`}>Google</Text>
+            </View>
+            <View
+              style={[
+                tw`py-4 px-6 shadow-md rounded-xl flex-1 w-full flex-row bg-white items-center text-base`,
+              ]}
+            >
+              <Image source={Fb} style={tw``} />
+              <Text style={tw`mx-3 font-bold`}>Facebook</Text>
+            </View>
+          </View>
+
+          <View style={tw`flex-row items-start w-full mt-6`}>
+            <Text style={tw`mr-1`}>Already have an account?</Text>
+            <Link href="/login" style={tw`text-red-500 font-bold`}>
+              Sign Up
+            </Link>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -482,6 +517,11 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     outline: "none",
   },
+  // card: {
+  //   boxShadow: "0px 4px 4px 0px #00000040";
+  // }
+
+  // shadow-[0px_4px_4px_0px_#00000040]
 });
 
 export default RegisterForm;
