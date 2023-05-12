@@ -311,7 +311,7 @@ const Login = () => {
 
           <View style={tw`flex-row items-start w-full mt-6`}>
             {/* <Text style={tw`mr-1`}>Don’t have an account?</Text> */}
-            <Link href="/reset-password" style={tw`text-gray-600 underline`}>
+            <Link href="/reset-password" style={tw`text-gray-600 underline my-4`}>
               Forgot Password?
             </Link>
           </View>

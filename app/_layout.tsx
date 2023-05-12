@@ -4,8 +4,6 @@
 //   return <Stack initialRouteName="home" />;
 // }
 
-
-
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import Home from ".";
 // import Onboarding from "./onboarding";
@@ -42,6 +40,14 @@ export default function Layout() {
       <Stack.Screen
         name="login"
         options={{ headerTitle: "Login", headerShown: false }}
+      />
+      <Stack.Screen
+        name="reset-password"
+        options={{
+          headerTitle: "",
+          headerShown: true,
+          headerShadowVisible: false,
+        }}
       />
     </Stack>
   );
