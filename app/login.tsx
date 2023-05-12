@@ -28,7 +28,7 @@ type FormData = {
   password: string;
 };
 
-const RegisterForm = () => {
+const Login = () => {
   const {
     control,
     handleSubmit,
@@ -55,193 +55,6 @@ const RegisterForm = () => {
           <Logo style={tw`mx-auto mb-4`} />
 
           <Text style={tw`text-xl text-center mb-6`}>Create An Account</Text>
-
-          <View style={tw`w-full mb-4`}>
-            <Controller
-              control={control}
-              rules={{
-                required: "First name is required",
-                minLength: {
-                  value: 3,
-                  message: "First name should be at least 3 characters",
-                },
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <View>
-                  <Svg
-                    style={tw`absolute inset-y-0 h-full left-5`}
-                    width="14"
-                    height="16"
-                    viewBox="0 0 14 16"
-                    fill="none"
-                    // xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <Mask
-                      id="mask0_237_24"
-                      // style="mask-type:luminance"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="9"
-                      width="14"
-                      height="7"
-                    >
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M0.600098 9.87207H13.536V15.4026H0.600098V9.87207Z"
-                        fill="white"
-                      />
-                    </Mask>
-                    <G mask="url(#mask0_237_24)">
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.06879 10.9971C3.58898 10.9971 1.82498 11.5461 1.82498 12.6298C1.82498 13.7233 3.58898 14.2776 7.06879 14.2776C10.5478 14.2776 12.311 13.7286 12.311 12.6448C12.311 11.5513 10.5478 10.9971 7.06879 10.9971M7.06879 15.4026C5.46894 15.4026 0.599976 15.4026 0.599976 12.6298C0.599976 10.1578 4.29213 9.87207 7.06879 9.87207C8.66864 9.87207 13.536 9.87207 13.536 12.6448C13.536 15.1168 9.84464 15.4026 7.06879 15.4026"
-                        fill="#7B6F72"
-                      />
-                    </G>
-                    <Mask
-                      id="mask1_237_24"
-                      // style="mask-type:luminance"
-                      maskUnits="userSpaceOnUse"
-                      x="2"
-                      y="0"
-                      width="10"
-                      height="9"
-                    >
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M2.73145 0.500076H11.4045V8.46403H2.73145V0.500076Z"
-                        fill="white"
-                      />
-                    </Mask>
-                    <G mask="url(#mask1_237_24)">
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.0688 1.57077C5.32031 1.57077 3.89768 2.87652 3.89768 4.48227C3.89196 6.08277 5.30398 7.38777 7.04511 7.39377L7.0688 7.92927V7.39377C8.81646 7.39377 10.2383 6.08727 10.2383 4.48227C10.2383 2.87652 8.81646 1.57077 7.0688 1.57077M7.06879 8.46402H7.04265C4.65635 8.45727 2.7233 6.67002 2.73147 4.48002C2.73147 2.28627 4.67677 0.499771 7.06879 0.499771C9.45999 0.499771 11.4045 2.28627 11.4045 4.48227C11.4045 6.67827 9.45999 8.46402 7.06879 8.46402"
-                        fill="#7B6F72"
-                      />
-                    </G>
-                  </Svg>
-                  <TextInput
-                    style={[
-                      tw`bg-stone-50 px-4 py-2 pl-10 text-base rounded-md w-full placeholder:text-red-400 outline-none focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`,
-                      styles.input,
-                      styles.inputFocus,
-                    ]}
-                    placeholder="First Name"
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    accessibilityLabel="First Name"
-                    accessibilityHint="Enter your first name"
-                  />
-                </View>
-              )}
-              name="firstName"
-              defaultValue=""
-            />
-            {errors.firstName && (
-              <Text style={tw`text-red-500 mt-1 italics`}>
-                {errors.firstName.message}
-              </Text>
-            )}
-          </View>
-          <View style={tw`w-full mb-4`}>
-            <Controller
-              control={control}
-              rules={{
-                required: "Last name is required",
-                minLength: {
-                  value: 3,
-                  message: "Last name should be at least 3 characters",
-                },
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <View>
-                  <Svg
-                    style={tw`absolute inset-y-0 h-full left-5`}
-                    width="14"
-                    height="16"
-                    viewBox="0 0 14 16"
-                    fill="none"
-                    // xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <Mask
-                      id="mask0_237_24"
-                      // style="mask-type:luminance"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="9"
-                      width="14"
-                      height="7"
-                    >
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M0.600098 9.87207H13.536V15.4026H0.600098V9.87207Z"
-                        fill="white"
-                      />
-                    </Mask>
-                    <G mask="url(#mask0_237_24)">
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.06879 10.9971C3.58898 10.9971 1.82498 11.5461 1.82498 12.6298C1.82498 13.7233 3.58898 14.2776 7.06879 14.2776C10.5478 14.2776 12.311 13.7286 12.311 12.6448C12.311 11.5513 10.5478 10.9971 7.06879 10.9971M7.06879 15.4026C5.46894 15.4026 0.599976 15.4026 0.599976 12.6298C0.599976 10.1578 4.29213 9.87207 7.06879 9.87207C8.66864 9.87207 13.536 9.87207 13.536 12.6448C13.536 15.1168 9.84464 15.4026 7.06879 15.4026"
-                        fill="#7B6F72"
-                      />
-                    </G>
-                    <Mask
-                      id="mask1_237_24"
-                      // style="mask-type:luminance"
-                      maskUnits="userSpaceOnUse"
-                      x="2"
-                      y="0"
-                      width="10"
-                      height="9"
-                    >
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M2.73145 0.500076H11.4045V8.46403H2.73145V0.500076Z"
-                        fill="white"
-                      />
-                    </Mask>
-                    <G mask="url(#mask1_237_24)">
-                      <Path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.0688 1.57077C5.32031 1.57077 3.89768 2.87652 3.89768 4.48227C3.89196 6.08277 5.30398 7.38777 7.04511 7.39377L7.0688 7.92927V7.39377C8.81646 7.39377 10.2383 6.08727 10.2383 4.48227C10.2383 2.87652 8.81646 1.57077 7.0688 1.57077M7.06879 8.46402H7.04265C4.65635 8.45727 2.7233 6.67002 2.73147 4.48002C2.73147 2.28627 4.67677 0.499771 7.06879 0.499771C9.45999 0.499771 11.4045 2.28627 11.4045 4.48227C11.4045 6.67827 9.45999 8.46402 7.06879 8.46402"
-                        fill="#7B6F72"
-                      />
-                    </G>
-                  </Svg>
-                  <TextInput
-                    style={[
-                      tw`bg-stone-50 px-4 py-2 pl-10 text-base rounded-md w-full placeholder:text-red-400 outline-none focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`,
-                      styles.input,
-                      styles.inputFocus,
-                    ]}
-                    placeholder="Last Name"
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    accessibilityLabel="Last Name"
-                    accessibilityHint="Enter your last name"
-                  />
-                </View>
-              )}
-              name="lastName"
-              defaultValue=""
-            />
-            {errors.lastName && (
-              <Text style={tw`text-red-500 mt-1 italics`}>
-                {errors.lastName.message}
-              </Text>
-            )}
-          </View>
           <View style={tw`w-full mb-4`}>
             <Controller
               control={control}
@@ -465,7 +278,7 @@ const RegisterForm = () => {
               accessibilityLabel="Register"
             >
               <Text style={tw`text-white font-bold text-center text-lg`}>
-                Create Account
+                Sign in
               </Text>
             </TouchableOpacity>
           </View>
@@ -497,9 +310,16 @@ const RegisterForm = () => {
           </View>
 
           <View style={tw`flex-row items-start w-full mt-6`}>
-            <Text style={tw`mr-1`}>Already have an account?</Text>
-            <Link href="/login" style={tw`text-red-500 font-bold`}>
-              Sign In
+            {/* <Text style={tw`mr-1`}>Don’t have an account?</Text> */}
+            <Link href="/reset-password" style={tw`text-gray-600 underline`}>
+              Forgot Password?
+            </Link>
+          </View>
+
+          <View style={tw`flex-row items-start w-full mt-2`}>
+            <Text style={tw`mr-1`}>Don’t have an account?</Text>
+            <Link href="/register" style={tw`text-red-500 font-bold`}>
+              Sign Up
             </Link>
           </View>
         </View>
@@ -516,12 +336,6 @@ const styles = StyleSheet.create({
   inputFocus: {
     borderColor: "blue",
     outline: "none",
-  },
-  // card: {
-  //   boxShadow: "0px 4px 4px 0px #00000040";
-  // }
-
-  // shadow-[0px_4px_4px_0px_#00000040]
+  }
 });
-
-export default RegisterForm;
+export default Login;

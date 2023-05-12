@@ -39,6 +39,10 @@ export default function Layout() {
         name="register"
         options={{ headerTitle: "Register", headerShown: false }}
       />
+      <Stack.Screen
+        name="login"
+        options={{ headerTitle: "Login", headerShown: false }}
+      />
     </Stack>
   );
 }
