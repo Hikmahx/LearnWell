@@ -21,6 +21,7 @@
 // }
 
 import { Stack } from "expo-router/stack";
+import { View } from "react-native";
 
 export default function Layout() {
   return (
@@ -48,6 +49,15 @@ export default function Layout() {
           headerShown: true,
           headerShadowVisible: false,
         }}
+      />
+      <Stack.Screen
+        name="home"
+        options={{ headerTitle: "Home", headerShown: false }}
+        // component={() => (
+        //   <View style={{ flex: 1, backgroundColor: "#fff" }}>
+        //     {/* Your home screen content goes here */}
+        //   </View>
+        // )}
       />
     </Stack>
   );

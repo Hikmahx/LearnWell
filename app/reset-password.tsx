@@ -14,7 +14,7 @@ import {
   Image,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import tw from "twrnc";
+import tw from "../lib/tailwind";
 import Logo from "../assets/images/logo.svg";
 import { Link } from "expo-router";
 

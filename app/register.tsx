@@ -14,12 +14,12 @@ import {
   Image,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import tw from "twrnc";
+import tw from "../lib/tailwind";
 import Logo from "../assets/images/logo.svg";
 import { Svg, Path, G, Mask } from "react-native-svg";
 import Google from "../assets/images/google-icon.png";
 import Fb from "../assets/images/fb-icon.png";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 type FormData = {
   firstName: string;
@@ -37,10 +37,12 @@ const RegisterForm = () => {
     mode: "onChange",
   });
 
+  const router = useRouter();
   const [showPassword, setshowPassword] = useState<Boolean>(false);
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    router.push("/login");
   };
 
   return (
