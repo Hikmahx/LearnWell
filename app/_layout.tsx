@@ -22,8 +22,18 @@
 
 import { Stack } from "expo-router/stack";
 import { View } from "react-native";
+import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-sans';
 
 export default function Layout() {
+  const [fontsLoaded] = useFonts({
+    OpenSans_400Regular,
+    OpenSans_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+  
   return (
     <Stack>
       <Stack.Screen

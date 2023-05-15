@@ -9,7 +9,7 @@ import Square from "../assets/images/square.svg";
 import Triangle from "../assets/images/triangle.svg";
 import Circle from "../assets/images/circle-blur.png";
 import { StyleSheet } from "react-native";
-import * as Font from "expo-font";
+// import * as Font from "expo-font";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -23,17 +23,17 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const loadFonts = async () => {
-    await Font.loadAsync({
-      "Open Sans": {
-        uri: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap",
-      },
-    });
-  };
+  // const loadFonts = async () => {
+  //   await Font.loadAsync({
+  //     "Open Sans": {
+  //       uri: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap",
+  //     },
+  //   });
+  // };
 
-  useEffect(() => {
-    loadFonts();
-  }, []);
+  // useEffect(() => {
+  //   loadFonts();
+  // }, []);
 
   return (
     <SafeAreaView style={[tw`font-sans h-full w-full bg-blue`]}>
