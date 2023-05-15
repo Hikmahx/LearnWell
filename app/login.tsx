@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <ScrollView style={tw`bg-white`}>
+    <ScrollView style={[tw`bg-white`, { fontFamily: "OpenSans_400Regular" }]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "position" : undefined}
         style={tw`flex-1 mt-16`}
@@ -69,38 +69,14 @@ const Login = () => {
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <View>
-                  <Svg
-                    style={tw`absolute inset-y-0 h-full left-5 w-[14px]`}
-                    width="18"
-                    height="16"
-                    viewBox="0 0 18 16"
-                    fill="none"
-                    // xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <Path
-                      d="M13.427 5.63836L10.0945 8.34814C9.46492 8.84764 8.57908 8.84764 7.94946 8.34814L4.58887 5.63836"
-                      stroke="#7B6F72"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <Path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M12.6816 14.75C14.9627 14.7563 16.5 12.8822 16.5 10.5788V5.42751C16.5 3.12412 14.9627 1.25 12.6816 1.25H5.31835C3.03734 1.25 1.5 3.12412 1.5 5.42751V10.5788C1.5 12.8822 3.03734 14.7563 5.31835 14.75H12.6816Z"
-                      stroke="#7B6F72"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </Svg>
-
                   <TextInput
                     style={[
-                      tw`bg-stone-50 px-4 py-2 pl-10 text-base rounded-md w-full placeholder:text-red-400 outline-none focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`,
+                      tw`bg-stone-50 px-4 py-2 text-base rounded-md w-full placeholder:text-red-400 focus:outline-none focus:border-blue focus:bg-white`,
                       styles.input,
                       styles.inputFocus,
                     ]}
+                    // caretHidden={false}
+                    selectionColor={"#146BFB"}
                     placeholder="Email"
                     keyboardType="email-address"
                     onBlur={onBlur}
@@ -115,7 +91,7 @@ const Login = () => {
               defaultValue=""
             />
             {errors.email && (
-              <Text style={tw`text-red-500 mt-1 italics`}>
+              <Text style={[tw`text-red-500 mt-1`, { fontStyle: "italic" }]}>
                 {errors.email.message}
               </Text>
             )}
@@ -132,45 +108,14 @@ const Login = () => {
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <View>
-                  <Svg
-                    style={tw`absolute inset-y-0 h-full left-5`}
-                    width="14"
-                    height="16"
-                    viewBox="0 0 14 16"
-                    fill="none"
-                    // xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <Path
-                      d="M10.3176 6.08585V4.4756C10.3176 2.59085 8.78906 1.06235 6.90431 1.06235C5.01956 1.0541 3.48506 2.5751 3.47681 4.4606V4.4756V6.08585"
-                      stroke="#7B6F72"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <Path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M9.76237 14.9372H4.03162C2.46112 14.9372 1.18762 13.6645 1.18762 12.0932V8.87646C1.18762 7.30521 2.46112 6.03246 4.03162 6.03246H9.76237C11.3329 6.03246 12.6064 7.30521 12.6064 8.87646V12.0932C12.6064 13.6645 11.3329 14.9372 9.76237 14.9372Z"
-                      stroke="#7B6F72"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <Path
-                      d="M6.89709 9.65202V11.3178"
-                      stroke="#7B6F72"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </Svg>
-
                   <TextInput
                     style={[
-                      tw`bg-stone-50 px-4 py-2 pl-10 text-base rounded-md w-full placeholder:text-red-400 outline-none focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`,
+                      tw`bg-stone-50 px-4 py-2 text-base rounded-md w-full placeholder:text-red-400 focus:outline-none focus:border-blue focus:bg-white`,
                       styles.input,
                       styles.inputFocus,
                     ]}
+                    // caretHidden={false}
+                    selectionColor={"#146BFB"}
                     placeholder="Password"
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -267,14 +212,14 @@ const Login = () => {
               defaultValue=""
             />
             {errors.password && (
-              <Text style={tw`text-red-500 mt-1 italics`}>
+              <Text style={[tw`text-red-500 mt-1`, { fontStyle: "italic" }]}>
                 {errors.password.message}
               </Text>
             )}
           </View>
           <View style={tw`w-full mb-4`}>
             <TouchableOpacity
-              style={tw`bg-blue-600 px-4 py-2 rounded-md w-full max-w-md mt-8 mx-auto`}
+              style={tw`bg-blue px-4 py-2 rounded-md w-full max-w-md mt-8 mx-auto`}
               onPress={handleSubmit(onSubmit)}
               accessibilityRole="button"
               accessibilityLabel="Register"
@@ -313,7 +258,10 @@ const Login = () => {
 
           <View style={tw`flex-row items-start w-full mt-6`}>
             {/* <Text style={tw`mr-1`}>Don’t have an account?</Text> */}
-            <Link href="/reset-password" style={tw`text-gray-600 underline my-4`}>
+            <Link
+              href="/reset-password"
+              style={tw`text-dark-gray underline my-4`}
+            >
               Forgot Password?
             </Link>
           </View>
@@ -333,11 +281,12 @@ const Login = () => {
 const styles = StyleSheet.create({
   input: {
     width: "100%",
-    caretColor: "#2563eb",
+    // caretColor: "#2563eb",
+    // outline: "none",
   },
   inputFocus: {
     borderColor: "blue",
-    outline: "none",
-  }
+    // outline: "none",
+  },
 });
 export default Login;

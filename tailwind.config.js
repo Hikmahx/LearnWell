@@ -10,9 +10,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Open Sans', 'sans-serif'],
-      },
+      // fontFamily: {
+      //   sans: ['Open Sans', 'sans-serif'],
+      // },
       colors: {
         'blue': '#146BFB',
         'soft-red': '#EA5353',

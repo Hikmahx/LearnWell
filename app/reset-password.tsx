@@ -41,7 +41,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <ScrollView style={tw`bg-white`}>
+    <ScrollView style={[tw`bg-white`, { fontFamily: 'OpenSans_400Regular' }]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "position" : undefined}
         style={tw`flex-1 mt-16`}
@@ -54,7 +54,7 @@ const ResetPassword = () => {
           <Text style={tw`text-xl text-center my-6 uppercase font-bold`}>
             Forgot your password?
           </Text>
-          <Text style={tw`text-center text-gray-600 mt-10 mb-8`}>
+          <Text style={tw`text-center text-dark-gray mt-10 mb-8`}>
             Enter your registered email below to receive password reset
             instruction
           </Text>
@@ -72,7 +72,7 @@ const ResetPassword = () => {
                 <View>
                   <TextInput
                     style={[
-                      tw`bg-stone-50 px-4 py-2 pl-10 text-base rounded-md w-full placeholder:text-red-400 outline-none focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`,
+                      tw`bg-stone-50 px-4 py-2 text-base rounded-md w-full placeholder:text-red-400 focus:outline-none focus:border-blue focus:bg-white`,
                       styles.input,
                       styles.inputFocus,
                     ]}
@@ -90,7 +90,7 @@ const ResetPassword = () => {
               defaultValue=""
             />
             {errors.email && (
-              <Text style={tw`text-red-500 mt-1 italics`}>
+              <Text style={[tw`text-red-500 mt-1`, { fontStyle: "italic" }]}>
                 {errors.email.message}
               </Text>
             )}
@@ -98,7 +98,7 @@ const ResetPassword = () => {
 
           <View style={tw`w-full mb-4`}>
             <TouchableOpacity
-              style={tw`bg-blue-600 px-4 py-2 rounded-md w-full max-w-md mt-8 mx-auto`}
+              style={tw`bg-blue px-4 py-2 rounded-md w-full max-w-md mt-8 mx-auto`}
               onPress={handleSubmit(onSubmit)}
               accessibilityRole="button"
               accessibilityLabel="Register"
@@ -124,11 +124,11 @@ const ResetPassword = () => {
 const styles = StyleSheet.create({
   input: {
     width: "100%",
-    caretColor: "#2563eb",
+    // caretColor: "#2563eb",
   },
   inputFocus: {
     borderColor: "blue",
-    outline: "none",
+    // outline: "none",
   },
 });
 export default ResetPassword;

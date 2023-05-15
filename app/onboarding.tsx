@@ -13,12 +13,12 @@ import Triangle from "../assets/images/triangle.svg";
 
 const Onboarding = () => {
   return (
-    <View style={tw`relative font-sans h-full w-full bg-blue pb-12`}>
+    <View style={[tw`relative font-sans h-full w-full bg-blue pb-12`, { fontFamily: 'OpenSans_400Regular' }]}>
       {/* <BgImage style={tw`w-full  h-[796px] absolute inset-x-0 `} /> */}
       <View style={tw`px-4 items-center`}>
         <View style={tw`mt-16 mb-6 items-center`}>
           <Logo style={tw`mx-auto mb-5`} />
-          <Text style={tw`text-gray-300 w-40 text-center mx-auto`}>
+          <Text style={tw`text-gray w-40 text-center mx-auto`}>
             Unlocking knowledge, one lesson at a time
           </Text>
         </View>

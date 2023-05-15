@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import tw from "../../lib/tailwind";
 import { Link } from "expo-router";
-import Svg from "react-native-svg";
+import Svg, { Path } from "react-native-svg";
 
 const FeaturedTopics = () => {
   return (
@@ -34,19 +34,19 @@ const FeaturedTopics = () => {
               style={tw`w-10 h-10 bg-blue rounded-2xl items-center justify-center`}
             >
               <Svg width="13" height="12" viewBox="0 0 13 12" fill="none">
-                <path
+                <Path
                   d="M1 5.99988H10.4286"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <path
+                <Path
                   d="M7.28577 10.7142L12.0001 5.99993L7.28577 1.28564"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </Svg>
             </View>
@@ -71,19 +71,19 @@ const FeaturedTopics = () => {
               style={tw`w-10 h-10 bg-blue rounded-2xl items-center justify-center`}
             >
               <Svg width="13" height="12" viewBox="0 0 13 12" fill="none">
-                <path
+                <Path
                   d="M1 5.99988H10.4286"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <path
+                <Path
                   d="M7.28577 10.7142L12.0001 5.99993L7.28577 1.28564"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </Svg>
             </View>
@@ -107,19 +107,19 @@ const FeaturedTopics = () => {
               style={tw`w-10 h-10 bg-blue rounded-2xl items-center justify-center`}
             >
               <Svg width="13" height="12" viewBox="0 0 13 12" fill="none">
-                <path
+                <Path
                   d="M1 5.99988H10.4286"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <path
+                <Path
                   d="M7.28577 10.7142L12.0001 5.99993L7.28577 1.28564"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </Svg>
             </View>
@@ -141,19 +141,19 @@ const FeaturedTopics = () => {
               style={tw`w-10 h-10 bg-blue rounded-2xl items-center justify-center`}
             >
               <Svg width="13" height="12" viewBox="0 0 13 12" fill="none">
-                <path
+                <Path
                   d="M1 5.99988H10.4286"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <path
+                <Path
                   d="M7.28577 10.7142L12.0001 5.99993L7.28577 1.28564"
                   stroke="#FECF63"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </Svg>
             </View>
