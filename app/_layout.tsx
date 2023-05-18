@@ -61,14 +61,12 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="home"
-        options={{ headerTitle: "Home", headerShown: false }}
-        // component={() => (
-        //   <View style={{ flex: 1, backgroundColor: "#fff" }}>
-        //     {/* Your home screen content goes here */}
-        //   </View>
-        // )}
+        name="(tabs)"
+        options={{
+          headerShown: false,
+        }}
       />
+      
     </Stack>
   );
 }

@@ -1,10 +1,10 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
-import Header from "../components/Home/Header";
-import VideoTutorial from "../components/Home/VideoTutorial";
-import PopularSubjects from "../components/Home/PopularSubjects";
-import FeaturedTopics from "../components/Home/FeaturedTopics";
-import tw from "../lib/tailwind";
+import Header from "../../components/Home/Header";
+import VideoTutorial from "../../components/Home/VideoTutorial";
+import PopularSubjects from "../../components/Home/PopularSubjects";
+import FeaturedTopics from "../../components/Home/FeaturedTopics";
+import tw from "../../lib/tailwind";
 
 const Home = () => {
   return (
