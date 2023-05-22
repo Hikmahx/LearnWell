@@ -20,6 +20,18 @@ import { Svg, Path, G, Mask } from "react-native-svg";
 import Google from "../assets/images/google-icon.png";
 import Fb from "../assets/images/fb-icon.png";
 import { Link, useRouter } from "expo-router";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  signInWithCredential,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+// import * as Google from 'expo-google-app-auth';
+// import firebase from '../firebase';
+import firebase from "firebase/app";
+import "firebase/auth";
+import * as AuthSession from "expo-auth-session";
 
 type FormData = {
   firstName: string;
@@ -43,6 +55,68 @@ const Login = () => {
   const onSubmit = (data: FormData) => {
     console.log(data);
     router.push("/home");
+  };
+
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     const provider = new GoogleAuthProvider();
+  //     // await signInWithPopup(auth, provider);
+  //     const result = await signInWithPopup(auth, provider);
+
+  //   // Access the user information
+  //   const user = result.user;
+  //   const { displayName, email, photoURL } = user;
+  //   console.log(user)
+  //     // Sign-in successful, navigate to the desired page
+  //     // console.log(auth, provider)
+  //     router.push("/home");
+  //   } catch (error) {
+  //     // Handle sign-in error
+  //     console.error("Google sign-in error:", error);
+  //   }
+  // };
+
+
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+  
+      // Set additional scopes if needed
+      if (Platform.OS === "android") {
+        provider.addScope("profile");
+        provider.addScope("email");
+      }
+  
+      // Handle the sign-in flow based on the platform
+      if (Platform.OS === "web") {
+        const result = await signInWithPopup(auth, provider);
+        // Access the user information
+        const user = result.user;
+        const { displayName, email, photoURL } = user;
+        console.log("User info:", { displayName, email, photoURL });
+      } else {
+        const redirectUrl = AuthSession.makeRedirectUri({ useProxy: true });
+        const providerId = provider.providerId;
+        const authUrl = `https://${auth.config.authDomain}/__/auth/handler?provider=${providerId}&redirect_uri=${encodeURIComponent(
+          redirectUrl
+        )}`;
+        const result = await AuthSession.startAsync({ authUrl });
+        if (result.type === "success") {
+          // Complete the sign-in flow using the obtained accessToken
+          const { accessToken } = result.params;
+          await signInWithCredential(
+            auth,
+            GoogleAuthProvider.credential(null, accessToken)
+          );
+          // Sign-in successful, navigate to the desired page
+        }
+      }
+      router.push("/home");
+    } catch (error) {
+      // Handle sign-in error
+      console.error("Google sign-in error:", error);
+    }
   };
 
   return (
@@ -238,14 +312,15 @@ const Login = () => {
           </View>
 
           <View style={tw`flex-row w-full gap-x-4`}>
-            <View
+            <TouchableOpacity
               style={[
                 tw`py-4 px-6 shadow-md rounded-xl flex-1 w-full flex-row bg-white items-center text-base`,
               ]}
+              onPress={handleGoogleSignIn}
             >
               <Image source={Google} style={tw``} />
               <Text style={tw`mx-3 font-bold`}>Google</Text>
-            </View>
+            </TouchableOpacity>
             <View
               style={[
                 tw`py-4 px-6 shadow-md rounded-xl flex-1 w-full flex-row bg-white items-center text-base`,
