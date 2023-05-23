@@ -11,7 +11,7 @@ const Header = () => {
         <Image source={Avatar} style={tw`w-11 h-11`} />
         <View style={tw`ml-3`}>
           <Text style={tw`text-[10px] text-gray mb-1`}>Welcome Back,</Text>
-          <Text style={tw`tet-base text-dark-gray font-bold`}>Jane Doe</Text>
+          <Text style={tw`text-base text-dark-gray font-bold`}>Jane Doe</Text>
         </View>
       </View>
       <Search />

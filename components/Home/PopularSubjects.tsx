@@ -22,7 +22,7 @@ const PopularSubjects = () => {
             12 Topics
           </Text>
           <Svg
-            style={tw`absolute bottom-0 right-0 z[-10]`}
+            style={tw`absolute bottom-0 right-0`}
             width="45"
             height="44"
             viewBox="0 0 45 44"
@@ -42,7 +42,7 @@ const PopularSubjects = () => {
             9 Topics
           </Text>
           <Svg
-            style={tw`absolute bottom-0 right-0 z[-10]`}
+            style={tw`absolute bottom-0 right-0`}
             width="45"
             height="42"
             viewBox="0 0 45 42"
@@ -62,7 +62,7 @@ const PopularSubjects = () => {
             5 Topics
           </Text>
           <Svg
-            style={tw`absolute bottom-0 right-0 z[-10]`}
+            style={tw`absolute bottom-0 right-0`}
             width="41"
             height="50"
             viewBox="0 0 41 50"
@@ -80,7 +80,7 @@ const PopularSubjects = () => {
             8 Topics
           </Text>
           <Svg
-            style={tw`absolute bottom-0 right-0 z[-10]`}
+            style={tw`absolute bottom-0 right-0`}
             width="47"
             height="47"
             viewBox="0 0 47 47"
@@ -94,7 +94,6 @@ const PopularSubjects = () => {
         </View>
       </View>
       <View style={tw`border-b flex-1 w-full border-zinc-200 my-4`} />
-
     </View>
   );
 };
