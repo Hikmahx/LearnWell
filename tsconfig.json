@@ -3,5 +3,6 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "strict": true
-  }
+  },
+  "typeRoots": ["./types"],
 }
