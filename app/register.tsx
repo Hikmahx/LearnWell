@@ -20,6 +20,8 @@ import { Svg, Path, G, Mask } from "react-native-svg";
 import Google from "../assets/images/google-icon.png";
 import Fb from "../assets/images/fb-icon.png";
 import { Link, useRouter } from "expo-router";
+import GoogleButton from "../components/Home/GoogleButton";
+import FacebookButton from "../components/Home/FacebookButton";
 
 type FormData = {
   firstName: string;
@@ -307,22 +309,8 @@ const RegisterForm = () => {
           </View>
 
           <View style={tw`flex-row w-full gap-x-4`}>
-            <View
-              style={[
-                tw`py-4 px-6 shadow-md rounded-xl flex-1 w-full flex-row bg-white items-center text-base`,
-              ]}
-            >
-              <Image source={Google} style={tw``} />
-              <Text style={tw`mx-3 font-bold`}>Google</Text>
-            </View>
-            <View
-              style={[
-                tw`py-4 px-6 shadow-md rounded-xl flex-1 w-full flex-row bg-white items-center text-base`,
-              ]}
-            >
-              <Image source={Fb} style={tw``} />
-              <Text style={tw`mx-3 font-bold`}>Facebook</Text>
-            </View>
+            <GoogleButton />
+            <FacebookButton />
           </View>
 
           <View style={tw`flex-row items-start w-full mt-6`}>
