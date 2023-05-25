@@ -4,7 +4,6 @@
     "slug": "LearnWell",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "com.hikmahx.LearnWell",
     "userInterfaceStyle": "automatic",
     "splash": {
       "resizeMode": "contain",
@@ -13,7 +12,6 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.hikmahx.LearnWell"
@@ -26,6 +24,7 @@
     },
     "web": {
       "bundler": "metro"
-    }
+    },
+    "scheme": ["LearnWell", "fb807395433765355"]
   }
 }

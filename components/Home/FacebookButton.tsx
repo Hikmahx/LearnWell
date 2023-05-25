@@ -3,10 +3,11 @@ import { View, Button, Image, Text } from "react-native";
 import * as AuthSession from "expo-auth-session";
 import firebase from "firebase/app";
 import {
+  getAuth,
   signInWithPopup,
   FacebookAuthProvider,
-  signInWithRedirect,
-  signInWithCredential,
+  UserCredential,
+  OAuthCredential,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import * as Facebook from "expo-auth-session/providers/facebook";
@@ -15,25 +16,22 @@ import tw from "../../lib/tailwind";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Fb from "../../assets/images/fb-icon.png";
 
+WebBrowser.maybeCompleteAuthSession();
 export default function App() {
-  
-  // initialize WebBrowser
-  WebBrowser.maybeCompleteAuthSession();
-  // This will set up something like a listener whenever the use is trying to signin with facebook
-  // maybeCompleteAuthSession(): the will open the web browser inside the application
-
-  // Facebook (from "expo-auth-session/providers/facebook") will return 3 things in an array
   const [request, response, promptAsync] = Facebook.useAuthRequest({
     clientId: "807395433765355",
+    extraParams: {
+      auth_type: "rerequest",
+      scope: "email",
+    },
   });
 
   useEffect(() => {
-    if (response && response.type === "success" && response.authentication) {
-      // Fetch the data once we have the token of the user
-
+    if (response && response.type === "success" && response.params) {
       (async () => {
+        const { access_token: accessToken } = response.params;
         const userInfoResponse = await fetch(
-          `https://graph.facebook.com/me?access_token=${response.authentication?.accessToken}&fields=id,name,email,picture.type(large)`
+          `https://graph.facebook.com/me?access_token=${accessToken}&fields=id,name,email,picture.type(large)`
         );
         const userInfo = await userInfoResponse.json();
         console.log(userInfo);
@@ -43,13 +41,30 @@ export default function App() {
 
   const handlePressAsync = async () => {
     const result = await promptAsync();
-    // promptAsync will open the modal
-    if (response?.type !== "success") {
-      alert("Uh oh, something went wrong");
-      return;
+    if (response?.type === "success" && response.params) {
+      const { access_token: accessToken } = response.params;
+
+      const auth = getAuth(); // Get the Firebase Auth instance
+      const provider = new FacebookAuthProvider();
+
+      try {
+        const credential = FacebookAuthProvider.credential(accessToken);
+        if (credential) {
+          const userCredential: UserCredential = await signInWithPopup(
+            auth,
+            provider,
+            credential
+          );
+          const user = userCredential.user;
+          console.log(user);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (response?.type === "error") {
+      console.log(response.error);
     }
   };
-
 
   return (
     <>
@@ -59,7 +74,7 @@ export default function App() {
         ]}
         disabled={!request}
         onPress={handlePressAsync}
-      >      
+      >
         <Image source={Fb} style={tw``} />
         <Text style={tw`mx-3 font-bold`}>Facebook</Text>
       </TouchableOpacity>
