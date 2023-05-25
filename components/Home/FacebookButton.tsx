@@ -15,11 +15,13 @@ import * as WebBrowser from "expo-web-browser";
 import tw from "../../lib/tailwind";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Fb from "../../assets/images/fb-icon.png";
+import { FACEBOOK_APP_ID } from "@env"
 
 WebBrowser.maybeCompleteAuthSession();
+
 export default function App() {
   const [request, response, promptAsync] = Facebook.useAuthRequest({
-    clientId: "807395433765355",
+    clientId: FACEBOOK_APP_ID,
     extraParams: {
       auth_type: "rerequest",
       scope: "email",
