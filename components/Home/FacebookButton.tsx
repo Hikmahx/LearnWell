@@ -34,14 +34,14 @@ export default function App() {
   const [user, setUser] = useState(null);
 
   // update later: useProxy is deprecated
-  const redirectUri = AuthSession.makeRedirectUri({
-    native: `fb${FACEBOOK_APP_ID}://authorize`,
-    useProxy: true,
-  });
+  // const redirectUri = AuthSession.makeRedirectUri({
+  //   native: `fb${FACEBOOK_APP_ID}://authorize`,
+  //   useProxy: true,
+  // });
 
   const [request, response, promptAsync] = Facebook.useAuthRequest({
     clientId: FACEBOOK_APP_ID,
-    redirectUri,
+    // redirectUri,
   });
 
   useEffect(() => {
