@@ -2,7 +2,7 @@ import { ScrollView, View, Text } from "react-native";
 import React from "react";
 import tw from "../../lib/tailwind";
 import NoteTaking from "../../assets/images/note-taking.svg";
-import Search from "../../components/MyNotes/Search";
+import Search from "../../components/Shared/Search";
 import Notes from "../../components/MyNotes/Notes";
 
 const MyNotes = () => {
@@ -23,7 +23,7 @@ const MyNotes = () => {
           <Text style={tw`text-left font-bold text-3xl w-24`}>My Notes</Text>
           <NoteTaking />
         </View>
-        <Search />
+        <Search placeholder={"Search your notes"} inputColor={"#FECF63CC"} />
         <Notes />
       </ScrollView>
     </ScrollView>
