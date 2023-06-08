@@ -8,7 +8,7 @@ import { notes } from "../../notes.json";
 const Notes = () => {
   return (
     <View>
-      <View style={tw`w-full items-end`}>
+      <View style={tw`w-full items-end pt-12`}>
         <Svg
           style={tw`mb-4`}
           width="26"

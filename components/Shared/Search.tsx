@@ -18,7 +18,7 @@ const Search = ({ placeholder, inputColor }: SearchProps) => {
   };
 
   return (
-    <View style={tw`pb-12`}>
+    <View style={tw``}>
       <View style={[tw`flex-row items-center p-4`, styles.container, { backgroundColor: inputColor }]}>
         <TextInput
           style={[tw`focus:outline-none`, styles.input]}
