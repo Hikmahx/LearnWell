@@ -8,7 +8,7 @@ import tw from "../../lib/tailwind";
 
 const Home = () => {
   return (
-    <ScrollView style={[tw`bg-[#fafafa] w-full h-full px-6 pt-13`, { fontFamily: 'OpenSans_400Regular' }]}>
+    <ScrollView style={[tw`bg-white w-full h-full px-6 pt-13`, { fontFamily: 'OpenSans_400Regular' }]}>
       <ScrollView style={tw`mx-7 px-0.5 h-full max-w-md mx-auto mb-20`}> 
         <Header />
         <VideoTutorial />

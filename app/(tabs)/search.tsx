@@ -1,4 +1,4 @@
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import React from "react";
 import Header from "../../components/Browse/Header";
 import Subjects from "../../components/Browse/Subjects";
@@ -6,10 +6,12 @@ import tw from "../../lib/tailwind";
 
 const Search = () => {
   return (
-    <ScrollView style={tw`bg-white`}>
+    <View style={tw`flex-1 bg-white`}>
       <Header />
-      <Subjects />
-    </ScrollView>
+      <ScrollView style={tw`flex-1`}>
+        <Subjects />
+      </ScrollView>
+    </View>
   );
 };
 
