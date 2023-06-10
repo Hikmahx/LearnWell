@@ -6,7 +6,7 @@ import Details from '../../components/Profile/Details'
 
 const Profile = () => {
   return (
-    <View style={[tw`bg-white`, {minHeight: '100vh'}]}>
+    <View style={[tw`bg-white`, {minHeight: '100%'}]}>
       <Header />
       <Details />
     </View>

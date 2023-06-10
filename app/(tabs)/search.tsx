@@ -8,9 +8,9 @@ const Search = () => {
   return (
     <View style={tw`flex-1 bg-white`}>
       <Header />
-      <ScrollView style={tw`flex-1`}>
+      <View style={tw`flex-1`}>
         <Subjects />
-      </ScrollView>
+      </View>
     </View>
   );
 };

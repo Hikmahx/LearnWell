@@ -40,9 +40,10 @@ const Subjects = () => {
   );
 
   return (
-    <View style={tw`w-full max-w-lg mx-auto mb-10`}>
+    <View style={tw`w-full max-w-lg mx-auto`}>
       <View style={tw`mx-6 border-t border-[#b6b6b6]`}>
         <FlatList
+          // style={tw`pb-10`}
           data={subjects}
           renderItem={renderItem}
           keyExtractor={(item) => item.subject}

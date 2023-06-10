@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     color: "#000",
-    outlineStyle: "none",
+    // outlineStyle: "none",
   },
 });
 

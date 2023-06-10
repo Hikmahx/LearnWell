@@ -69,7 +69,7 @@ import Circle from "../assets/images/circle-blur.png";
   if (!fontsLoaded) return null;
 
   return (
-    <SafeAreaView style={[tw`font-sans h-full w-full bg-blue`]} onLayout={onLayout}>
+    <SafeAreaView style={[tw`h-full w-full bg-blue`]} onLayout={onLayout}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />

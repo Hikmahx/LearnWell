@@ -17,11 +17,11 @@ const categories = [
 const CategoryScrollView = () => {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <View style={[tw`gap-x-3 my-5`, styles.categoryContainer]}>
+      <View style={[tw`gap-x-3 my-5 h-auto`, styles.categoryContainer]}>
         {categories.map((category, index) => (
-          <View style={[tw`py-1 px-3 rounded-full `, category === "All" ? tw`bg-black` : tw`bg-[#dadada] `]}>
+          <View key={index} style={[tw`py-1 px-3 rounded-full h-[24px]`, category === "All" ? tw`bg-black` : tw`bg-[#dadada] `]}>
 
-            <Text key={index} style={[tw`text-xs`, category === "All" ? tw`text-white` : tw`text-black`]}>
+            <Text style={[tw`text-xs`, category === "All" ? tw`text-white` : tw`text-black`]}>
               {category}
             </Text>
           </View>

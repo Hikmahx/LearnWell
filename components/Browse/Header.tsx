@@ -8,14 +8,13 @@ const Header = () => {
   return (
     <View
       style={[
-        tw`w-full px-6 pt-13`,
+        tw`w-full px-6 pt-13 h-[196px]`,
         { fontFamily: "OpenSans_400Regular" },
       ]}
     >
       <View
         style={[
           tw`mx-7 px-0.5 h-full max-w-md mx-auto w-full`,
-          { fontFamily: "Open Sans" },
         ]}
       >
         <Search placeholder={"Search subjects or topics"} inputColor={"#F3F5F6"} />

@@ -13,7 +13,7 @@ import Triangle from "../assets/images/triangle.svg";
 
 const Onboarding = () => {
   return (
-    <View style={[tw`relative font-sans h-full w-full bg-blue pb-12`, { fontFamily: 'OpenSans_400Regular' }]}>
+    <View style={[tw`relative h-full w-full bg-blue pb-12`, { fontFamily: 'OpenSans_400Regular' }]}>
       {/* <BgImage style={tw`w-full  h-[796px] absolute inset-x-0 `} /> */}
       <View style={tw`px-4 items-center`}>
         <View style={tw`mt-16 mb-6 items-center`}>

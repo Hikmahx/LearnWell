@@ -16,7 +16,6 @@ const MyNotes = () => {
       <ScrollView
         style={[
           tw`mx-7 px-0.5 h-full max-w-md mx-auto mb-4 w-full`,
-          { fontFamily: "Open Sans" },
         ]}
       >
         <View style={tw`w-full mr-auto flex-row mb-2`}>
