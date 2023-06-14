@@ -104,6 +104,15 @@ export default function AppLayout() {
             ),
           }}
         />
+        <Tabs.Screen
+          // Name of the route to hide.
+          name="subjects"
+          options={{
+            // This tab will no longer show up in the tab bar.
+            href: null,
+            headerShown: false,
+          }}
+        />
       </Tabs>
     </SafeAreaProvider>
 
