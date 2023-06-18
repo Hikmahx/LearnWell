@@ -4,6 +4,7 @@ import tw from "../../lib/tailwind";
 import { subjects } from "../../subjects.json";
 import Svg, { Image } from "react-native-svg";
 import { ChevronRightIcon } from "react-native-heroicons/solid";
+import { Link } from "expo-router";
 
 const Subjects = () => {
   const renderItem = ({ item }: { item: any }) => (
@@ -35,7 +36,14 @@ const Subjects = () => {
           {item.numberOfTopics} Topics
         </Text>
       </View>
-      <ChevronRightIcon style={tw`ml-auto`} />
+      <Link
+        // href={`subjects/${item.subject.toLowerCase().replace(" ", "-")}`}
+        href={`subjects/${item.id}`}
+        style={tw`ml-auto`}
+      >
+        {/* <Text style={tw`sr-only hidden`}>Link to subject</Text> */}
+        <ChevronRightIcon style={tw`text-[#7e7e7e]`} />
+      </Link>
     </View>
   );
 

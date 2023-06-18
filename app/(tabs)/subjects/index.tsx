@@ -1,12 +1,9 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import { Redirect } from "expo-router";
 
 const Subjects = () => {
-  return (
-    <View>
-      <Text>Subjects</Text>
-    </View>
-  )
-}
+  return <Redirect href="/search" />;
+};
 
-export default Subjects
+export default Subjects;
