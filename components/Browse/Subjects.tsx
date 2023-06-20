@@ -28,6 +28,8 @@ const Subjects = () => {
               preserveAspectRatio="xMidYMid meet"
             />
           </Svg>
+          {/* <Image source={require(item.svgCode)}/> */}
+          {/* <Image source={item.svgCode}/> */}
         </View>
       </View>
       <View style={tw`flex ml-3`}>
