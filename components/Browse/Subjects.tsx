@@ -19,7 +19,7 @@ const Subjects = () => {
           { backgroundColor: `${item.color}80` },
         ]}
       >
-        <View style={styles.imageContainer}>
+        <View style={[tw`text-${item.color}`, styles.imageContainer]}>
           <Svg width={20} height={20}>
             <Image
               href={item.svgCode}
