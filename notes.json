@@ -1,0 +1,84 @@
+{
+  "notes": [
+    {
+      "noteColor": "#FF0000",
+      "title": "Mitosis and Meiosis",
+      "summary": "Mitosis is cell division in somatic cells, producing genetically identical daughter cells. Meiosis occurs...",
+      "category": "Science",
+      "subject": "Biology",
+      "date": "20/02/2021"
+    },
+    {
+      "noteColor": "#3F51B5",
+      "title": "World Religions",
+      "summary": "World religions examines the beliefs, practices, and teachings of major religions around the globe, including Christianity, Islam, Hinduism, Buddhism, and more...",
+      "category": "Religious Studies",
+      "subject": "Comparative Religion",
+      "date": "15/01/2022"
+    },
+    {
+      "noteColor": "#FF00FF",
+      "title": "Photosynthesis",
+      "summary": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy...",
+      "category": "Science",
+      "subject": "Biology",
+      "date": "25/09/2021"
+    },
+    {
+      "noteColor": "#00FF00",
+      "title": "Newton's Laws of Motion",
+      "summary": "Newton's three laws of motion describe the relationship between the motion of an object and the forces acting upon it.",
+      "category": "Science",
+      "subject": "Physics",
+      "date": "15/03/2021"
+    },
+    {
+      "noteColor": "#808080",
+      "title": "World Geography: Continents and Countries",
+      "summary": "Geography is the study of the Earth's physical features, climate, population distribution, and the relationships between ...",
+      "category": "Geography",
+      "subject": "Social Studies",
+      "date": "04/03/2023"
+    },
+    {
+      "noteColor": "#0000FF",
+      "title": "The French Revolution",
+      "summary": "The French Revolution was a period of radical social and political upheaval in France that had a lasting...",
+      "category": "History",
+      "subject": "World History",
+      "date": "10/05/2021"
+    },
+    {
+      "noteColor": "#FF5722",
+      "title": "Introduction to Literature",
+      "summary": "Literature encompasses various forms of written works, including novels, poems, plays, and short stories, that express human experiences and emotions...",
+      "category": "Literature",
+      "subject": "English Literature",
+      "date": "20/10/2021"
+    },
+    {
+      "noteColor": "#FF4081",
+      "title": "French Cuisine",
+      "summary": "French cuisine is renowned for its rich culinary traditions and techniques, including dishes such as coq au vin, ratatouille, and crème brûlée...",
+      "category": "Culinary Arts",
+      "subject": "Cooking",
+      "date": "30/12/2021"
+    },
+    {
+      "noteColor": "#FFFF00",
+      "title": "Introduction to Calculus",
+      "summary": "Calculus is a branch of mathematics that focuses on rates of change and accumulation. It has applications...",
+      "category": "Mathematics",
+      "subject": "Calculus",
+      "date": "05/07/2021"
+    },
+    {
+      "noteColor": "#9C27B0",
+      "title": "American Sign Language",
+      "summary": "American Sign Language (ASL) is a visual language used by the Deaf community in the United States, incorporating hand gestures, facial expressions, and body movements...",
+      "category": "Language",
+      "subject": "Linguistics",
+      "date": "25/04/2022"
+    }
+  ]
+}

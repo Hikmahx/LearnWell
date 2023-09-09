@@ -1,0 +1,144 @@
+{
+  "subjects": [
+    {
+      "id": 1,
+      "subject": "Mathematics",
+      "numberOfTopics": 17,
+      "color": "#146BFB",
+      "svgCode": "/assets/images/subject-icons/calculate.svg"
+    },
+    {
+      "id": 2,
+      "subject": "Geography",
+      "numberOfTopics": 12,
+      "color": "#04580C",
+      "svgCode": "/assets/images/subject-icons/map.svg"
+    },
+    {
+      "id": 3,
+      "subject": "Fine Arts",
+      "numberOfTopics": 9,
+      "color": "#BE185D",
+      "svgCode": "/assets/images/subject-icons/brush.svg"
+    },
+    {
+      "id": 4,
+      "subject": "English Language",
+      "numberOfTopics": 14,
+      "color": "#D4B200",
+      "svgCode": "/assets/images/subject-icons/speak.svg"
+    },
+    {
+      "id": 5,
+      "subject": "Computer",
+      "numberOfTopics": 8,
+      "color": "#155E75",
+      "svgCode": "/assets/images/subject-icons/computer.svg"
+    },
+    {
+      "id": 6,
+      "subject": "Biology",
+      "numberOfTopics": 20,
+      "color": "#16A34A",
+      "svgCode": "/assets/images/subject-icons/plant.svg"
+    },
+    {
+      "id": 7,
+      "subject": "Economics",
+      "numberOfTopics": 11,
+      "color": "#A35B1C",
+      "svgCode": "/assets/images/subject-icons/graph.svg"
+    },
+    {
+      "id": 8,
+      "subject": "Chemistry",
+      "numberOfTopics": 13,
+      "color": "#4C1D95",
+      "svgCode": "/assets/images/subject-icons/test-tube.svg"
+    },
+    {
+      "id": 9,
+      "subject": "Physics",
+      "numberOfTopics": 15,
+      "color": "#E21159",
+      "svgCode": "/assets/images/subject-icons/equation.svg"
+    },
+    {
+      "id": 10,
+      "subject": "Literature",
+      "numberOfTopics": 10,
+      "color": "#4E4152",
+      "svgCode": "/assets/images/subject-icons/book.svg"
+    },
+    {
+      "id": 11,
+      "subject": "History",
+      "numberOfTopics": 7,
+      "color": "#9E2D31",
+      "svgCode": "/assets/images/subject-icons/parchment.svg"
+    },
+    {
+      "id": 12,
+      "subject": "Physical Education",
+      "numberOfTopics": 12,
+      "color": "#65A30D",
+      "svgCode": "/assets/images/subject-icons/run.svg"
+    },
+    {
+      "id": 13,
+      "subject": "Yoruba",
+      "numberOfTopics": 10,
+      "color": "#D4B200",
+      "svgCode": "/assets/images/subject-icons/speak.svg"
+    },
+    {
+      "id": 14,
+      "subject": "Music",
+      "numberOfTopics": 11,
+      "color": "#6B21A8",
+      "svgCode": "/assets/images/subject-icons/music-note.svg"
+    },
+    {
+      "id": 15,
+      "subject": "Marketing & Finance",
+      "numberOfTopics": 14,
+      "color": "#2563EB",
+      "svgCode": "/assets/images/subject-icons/credit-card.svg"
+    },
+    {
+      "id": 16,
+      "subject": "Business Studies",
+      "numberOfTopics": 10,
+      "color": "#1E40AF",
+      "svgCode": "/assets/images/subject-icons/building.svg"
+    },
+    {
+      "id": 17,
+      "subject": "Nutrition",
+      "numberOfTopics": 16,
+      "color": "#C61823",
+      "svgCode": "/assets/images/subject-icons/apple.svg"
+    },
+    {
+      "id": 18,
+      "subject": "Environmental Studies",
+      "numberOfTopics": 11,
+      "color": "#04560C",
+      "svgCode": "/assets/images/subject-icons/recycling.svg"
+    },
+    {
+      "id": 19,
+      "subject": "Religious Studies",
+      "numberOfTopics": 13,
+      "color": "#3D4F83",
+      "svgCode": "/assets/images/subject-icons/prayer.svg"
+    },
+    {
+      "id": 20,
+      "subject": "Mental Health",
+      "numberOfTopics": 16,
+      "color": "#EF7D2A",
+      "svgCode": "/assets/images/subject-icons/psychology.svg"
+    }
+  ]
+}

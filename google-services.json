@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1024439502309",
+    "project_id": "learnwell-a20a4",
+    "storage_bucket": "learnwell-a20a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024439502309:android:09ef6dce5f05105e0d1b0c",
+        "android_client_info": {
+          "package_name": "com.hikmahx.LearnWell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024439502309-me3rtnuk64alf09q0tifpgtkl7m8ns0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIHtLcwenFTpi634zemUyzHoJIOIHz5QI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024439502309-g3tte9pbn3ml5o4a84i33drscakl9u7e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1024439502309-c1n6ahm3mh7i99qibs9d1u40rstauf75.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.learnwell"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "LearnWell",
+    "slug": "LearnWell",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hikmahx.LearnWell"
+    },
+    "android": {
+      "package": "com.hikmahx.LearnWell",
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "scheme": ["LearnWell", "fb807395433765355"]
+  }
+}
