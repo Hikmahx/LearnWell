@@ -25,6 +25,11 @@
     "web": {
       "bundler": "metro"
     },
-    "scheme": ["LearnWell", "fb807395433765355"]
-  }
+    "scheme": ["LearnWell", "fb807395433765355"],
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }}
 }
