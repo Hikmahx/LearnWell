@@ -1,6 +1,6 @@
 import React from "react";
 import { subjects } from "../../../subjects.json";
-import { useSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import {
   ScrollView,
   View,
@@ -70,7 +70,7 @@ const Topic = () => {
 };
 
 const Subject: React.FC = () => {
-  const { id } = useSearchParams();
+  const { id } = useLocalSearchParams();
   const subjectData: SubjectData | undefined = subjects.find(
     (subject) => subject.id === parseInt(id as string)
   );
