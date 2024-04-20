@@ -113,6 +113,13 @@ export default function AppLayout() {
             headerShown: false,
           }}
         />
+        <Tabs.Screen
+          name="topics"
+          options={{
+            href: null,
+            headerShown: false,
+          }}
+        />
       </Tabs>
     </SafeAreaProvider>
 
