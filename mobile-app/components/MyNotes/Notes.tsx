@@ -7,8 +7,8 @@ import { notes } from "../../notes.json";
 
 const Notes = () => {
   return (
-    <View>
-      <View style={tw`w-full items-end pt-12`}>
+    <View style={tw`mt-12`}>
+      {/* <View style={tw`w-full items-end pt-12`}>
         <Svg
           style={tw`mb-4`}
           width="26"
@@ -43,7 +43,7 @@ const Notes = () => {
             stroke="black"
           />
         </Svg>
-      </View>
+      </View> */}
 
       {notes.map((note: any) => (
         <React.Fragment key={note.title}>
