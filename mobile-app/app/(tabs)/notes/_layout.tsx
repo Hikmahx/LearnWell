@@ -13,6 +13,10 @@ const NotesLayout = () => {
           name="[id]"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="new-note"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </>
   );
