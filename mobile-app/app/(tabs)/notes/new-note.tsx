@@ -15,13 +15,18 @@ import tw from "../../../lib/tailwind";
 import { Link, useNavigation, useRouter } from "expo-router";
 import PellRichEditor from "../../../components/MyNotes/new-note/PellRichEditor";
 import ColorPicker from "react-native-wheel-color-picker";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setColor, setIsColorPickerVisible } from "@/redux/reducers/notesSlice";
 
 const NewNote = () => {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [isColorPickerVisible, setIsColorPickerVisible] = useState(false);
-  const [color, setColor] = useState("#ffffff");
 
+  const dispatch = useDispatch();
+  const { isColorPickerVisible, color } = useSelector(
+    (state: RootState) => state.notes
+  );
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
@@ -29,7 +34,7 @@ const NewNote = () => {
   const handleMenuSelect = (value: any) => {
     console.log(value);
     if (value === "change-bg") {
-      setIsColorPickerVisible(true);
+      dispatch(setIsColorPickerVisible(true));
     } else if (value === "save-note") {
       // Save note functionality here
     }
@@ -37,7 +42,7 @@ const NewNote = () => {
   };
 
   const onColorChange = (selectedColor: string) => {
-    setColor(selectedColor);
+    dispatch(setColor(selectedColor));
   };
 
   return (
