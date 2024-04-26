@@ -22,7 +22,13 @@
 
 import { Stack } from "expo-router/stack";
 import { View } from "react-native";
-import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-sans';
+import {
+  useFonts,
+  OpenSans_400Regular,
+  OpenSans_700Bold,
+} from "@expo-google-fonts/open-sans";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -33,40 +39,41 @@ export default function Layout() {
   if (!fontsLoaded) {
     return null;
   }
-  
+
   return (
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ headerTitle: "Home", headerShown: false }}
-      />
-      <Stack.Screen
-        name="onboarding"
-        options={{ headerTitle: "Onboarding", headerShown: false }}
-      />
-      <Stack.Screen
-        name="register"
-        options={{ headerTitle: "Register", headerShown: false }}
-      />
-      <Stack.Screen
-        name="login"
-        options={{ headerTitle: "Login", headerShown: false }}
-      />
-      <Stack.Screen
-        name="reset-password"
-        options={{
-          headerTitle: "",
-          headerShown: true,
-          headerShadowVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="(tabs)"
-        options={{
-          headerShown: false,
-        }}
-      />
-      
-    </Stack>
+    <Provider store={store}>
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{ headerTitle: "Home", headerShown: false }}
+        />
+        <Stack.Screen
+          name="onboarding"
+          options={{ headerTitle: "Onboarding", headerShown: false }}
+        />
+        <Stack.Screen
+          name="register"
+          options={{ headerTitle: "Register", headerShown: false }}
+        />
+        <Stack.Screen
+          name="login"
+          options={{ headerTitle: "Login", headerShown: false }}
+        />
+        <Stack.Screen
+          name="reset-password"
+          options={{
+            headerTitle: "",
+            headerShown: true,
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+    </Provider>
   );
 }
