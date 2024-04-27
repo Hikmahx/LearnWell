@@ -3,6 +3,7 @@ import { View, Pressable, Modal, Text, Button } from "react-native";
 import {
   ArrowLeftIcon,
   EllipsisVerticalIcon,
+  XMarkIcon,
 } from "react-native-heroicons/solid";
 import {
   MenuProvider,
@@ -27,6 +28,7 @@ const NewNote = () => {
   const { isColorPickerVisible, color } = useSelector(
     (state: RootState) => state.notes
   );
+
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
@@ -43,11 +45,17 @@ const NewNote = () => {
 
   const onColorChange = (selectedColor: string) => {
     dispatch(setColor(selectedColor));
+    // dispatch(setIsColorPickerVisible(false));
   };
 
   return (
     <MenuProvider>
-      <View style={tw`bg-[#fef3f2] h-full pt-12 px-4`}>
+      <View
+        style={[
+          tw`bg-[#fef3f2] h-full pt-12 px-4`,
+          { backgroundColor: `${color}` },
+        ]}
+      >
         <View style={tw`flex-row items-center justify-between mb-6`}>
           <Pressable style={tw``} onPress={() => router.push("/mynotes")}>
             <ArrowLeftIcon style={tw`mb-2 text-black font-bold`} />
@@ -87,7 +95,7 @@ const NewNote = () => {
       <Modal
         visible={isColorPickerVisible}
         transparent={true}
-        onRequestClose={() => setIsColorPickerVisible(false)}
+        onRequestClose={() => dispatch(setIsColorPickerVisible(false))}
         style={tw`w-full flex items-center justify-center`}
       >
         <View
@@ -101,20 +109,22 @@ const NewNote = () => {
           <View
             style={{
               width: "90%",
-              height: "90%",
+              height: "20rem",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 10,
               backgroundColor: "white",
               margin: "auto",
+              // elevation: 5,
             }}
           >
-            <Button
-              title="Close"
-              onPress={() => setIsColorPickerVisible(false)}
-            />
-
+            <Pressable
+              onPress={() => dispatch(setIsColorPickerVisible(false))}
+              style={{ position: "absolute", top: 10, right: 10 }}
+            >
+              <XMarkIcon />
+            </Pressable>
             <View
               style={{
                 flex: 1,
@@ -125,10 +135,10 @@ const NewNote = () => {
               <ColorPicker
                 color={color}
                 onColorChange={onColorChange}
-                style={{ width: 200, height: 200 }}
+                style={{ width: 200, height: 200, paddingBottom: 40 }}
                 swatches={true}
               />
-              <Text style={{ marginTop: 20 }}>Selected Color: {color}</Text>
+              {/* <Text style={{ marginTop: 20 }}>Selected Color: {color}</Text> */}
             </View>
           </View>
         </View>

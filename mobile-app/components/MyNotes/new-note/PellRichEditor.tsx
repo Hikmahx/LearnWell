@@ -13,6 +13,8 @@ import {
   RichToolbar,
 } from "react-native-pell-rich-editor";
 import tw from "../../../lib/tailwind";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const handleHead = ({ tintColor }) => (
   <Text style={{ color: tintColor }}>H1</Text>
@@ -20,6 +22,11 @@ const handleHead = ({ tintColor }) => (
 
 const PellRichEditor = () => {
   const richText = React.useRef();
+
+  const dispatch = useDispatch();
+  const { color } = useSelector(
+    (state: RootState) => state.notes
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -32,7 +39,7 @@ const PellRichEditor = () => {
             <RichEditor
               // initialFocus={true}
               lastFocusEnd={true}
-              editorStyle={{ backgroundColor: "#faf2f3" }}
+              editorStyle={{ backgroundColor: color }}
               autoCorrect={true}
               placeholder="Write your note here"
               ref={richText}
