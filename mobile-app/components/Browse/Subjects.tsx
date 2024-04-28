@@ -41,11 +41,10 @@ const Subjects = () => {
       <Link
         // href={`subjects/${item.subject.toLowerCase().replace(" ", "-")}`}
         href={`subjects/${item.id}`}
-        style={tw`ml-auto`}
-      >
-        {/* <Text style={tw`sr-only hidden`}>Link to subject</Text> */}
-        <ChevronRightIcon style={tw`text-[#7e7e7e]`} />
-      </Link>
+        style={tw`absolute inset-0`}
+      ></Link>
+      {/* <Text style={tw`sr-only hidden`}>Link to subject</Text> */}
+      <ChevronRightIcon style={tw`ml-auto text-[#7e7e7e]`} />
     </View>
   );
 
