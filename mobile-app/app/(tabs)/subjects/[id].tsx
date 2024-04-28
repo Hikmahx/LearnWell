@@ -60,7 +60,7 @@ const Topic = () => {
 
   return (
     <View style={tw`w-full max-w-lg mx-auto`}>
-      <View style={tw`mx-6 border-t border-[#b6b6b6]`}>
+      <View style={tw`border-t border-[#b6b6b6]`}>
         <FlatList
           data={subjects}
           renderItem={renderItem}
@@ -97,12 +97,12 @@ const Subject: React.FC = () => {
         </View>
       </View>
       <View style={tw`rounded-t-full bg-white h-[20px] -mt-[20px]`}></View>
-      <Image source={{ uri: `${svgCode}` }} style={tw`w-20 h-20`} />
+      {/* <Image source={{ uri: `${svgCode}` }} style={tw`w-20 h-20`} /> */}
 
-      <View style={tw`px-7 max-w-md w-full mx-auto`}>
-        <Text style={tw`mt-2 font-bold text-xl`}>Topics</Text>
+      <View style={tw`px-7  w-full mx-auto mb-40`}>
+        <Text style={tw`my-4 font-bold text-xl`}>Topics</Text>
+        <Topic />
       </View>
-      <Topic />
     </View>
   );
 };

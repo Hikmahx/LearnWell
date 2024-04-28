@@ -34,7 +34,7 @@ const Subjects = () => {
       </View>
       <View style={tw`flex ml-3`}>
         <Text style={tw`font-bold mb-2`}>{item.subject}</Text>
-        <Text style={tw`text-[10px] text-[#7e7e7e]`}>
+        <Text style={tw`text-[10px] text-[#7e7e7e] mb-3`}>
           {item.numberOfTopics} Topics
         </Text>
       </View>
