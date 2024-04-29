@@ -22,23 +22,23 @@ interface SubjectData {
 }
 const Topic = () => {
   const renderItem = ({ item }: { item: any }) => (
-    <View
-      key={item.subject}
-      style={tw`flex flex-row items-center border-b border-[#b6b6b6] py-3.5`}
-    >
-      <View style={tw`flex flex-row w-full`}>
-        <View style={tw`flex-1`}>
-          <Text style={tw`font-bold mb-2`}>{item.subject}</Text>
-          <Text style={tw`text-[10px] text-[#7e7e7e] overflow-wrap`}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia vel
-            adipisci optio
-          </Text>
-        </View>
-        <View>
-          <View
-            style={tw`w-10 h-10 bg-blue rounded-full items-center justify-center ml-2`}
-          >
-            <Link href={`/(tabs)/topics/topic`}>
+    <Link href={`/(tabs)/topics/topic`}>
+      <View
+        key={item.subject}
+        style={tw`flex flex-row items-center border-b border-[#b6b6b6] py-3.5`}
+      >
+        <View style={tw`flex flex-row w-full`}>
+          <View style={tw`flex-1`}>
+            <Text style={tw`font-bold mb-2`}>{item.subject}</Text>
+            <Text style={tw`text-[10px] text-[#7e7e7e] overflow-wrap`}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia vel
+              adipisci optio
+            </Text>
+          </View>
+          <View>
+            <View
+              style={tw`w-10 h-10 bg-blue rounded-full items-center justify-center ml-2`}
+            >
               <Svg
                 width="13"
                 height="16"
@@ -51,11 +51,11 @@ const Topic = () => {
                   fill="#FECF63"
                 />
               </Svg>
-            </Link>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </Link>
   );
 
   return (
@@ -99,7 +99,7 @@ const Subject: React.FC = () => {
       <View style={tw`rounded-t-full bg-white h-[20px] -mt-[20px]`}></View>
       {/* <Image source={{ uri: `${svgCode}` }} style={tw`w-20 h-20`} /> */}
 
-      <View style={tw`px-7  w-full mx-auto mb-40`}>
+      <View style={tw`px-7 max-w-lg w-full mx-auto mb-40`}>
         <Text style={tw`my-4 font-bold text-xl`}>Topics</Text>
         <Topic />
       </View>
