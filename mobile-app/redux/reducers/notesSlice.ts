@@ -7,6 +7,7 @@ const notesSlice = createSlice({
     isMenuVisible: false,
     isColorPickerVisible: false,
     color: "#ffffff",
+    articleContent: "",
   },
   reducers: {
     setIsColorPickerVisible: (state, { payload }) => {
@@ -16,8 +17,11 @@ const notesSlice = createSlice({
       state.color = payload;
 
     },
+    setArticleContent: (state, {payload}) => {
+      state.articleContent = payload;
+    }
   },
 });
 
-export const { setIsColorPickerVisible, setColor } = notesSlice.actions;
+export const { setIsColorPickerVisible, setColor, setArticleContent } = notesSlice.actions;
 export default notesSlice.reducer;

@@ -15,6 +15,7 @@ import {
 import tw from "../../../lib/tailwind";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { setArticleContent } from "@/redux/reducers/notesSlice";
 
 const handleHead = ({ tintColor }) => (
   <Text style={{ color: tintColor }}>H1</Text>
@@ -24,9 +25,13 @@ const PellRichEditor = () => {
   const richText = React.useRef();
 
   const dispatch = useDispatch();
-  const { color } = useSelector(
+  const { color, articleContent } = useSelector(
     (state: RootState) => state.notes
   );
+
+  const handleContentChange = (content: string) => {
+    dispatch(setArticleContent(content));
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -37,15 +42,12 @@ const PellRichEditor = () => {
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={{ flex: 1, backgroundColor: "transparent" }}>
             <RichEditor
-              // initialFocus={true}
               lastFocusEnd={true}
               editorStyle={{ backgroundColor: color }}
               autoCorrect={true}
               placeholder="Write your note here"
               ref={richText}
-              // onChange={(descriptionText) => {
-              //   console.log("descriptionText:", descriptionText);
-              // }}
+              onChange={handleContentChange}
               pasteAsPlainText={true}
               initialHeight={250}
             />
@@ -89,10 +91,7 @@ const PellRichEditor = () => {
             padding: 2,
             color: "white",
           }}
-          iconTint={'white'}
-          // flatContainerStyle={{backgroundColor: '#black',
-          //  borderRadius: '999px'
-          // }}
+          iconTint={"white"}
         />
       </KeyboardAvoidingView>
     </SafeAreaView>
