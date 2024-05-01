@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { View, Pressable, Modal, Text, Button } from "react-native";
+import React, { useEffect, useState } from "react";
+import { BackHandler, View, Pressable, Modal, Text, Button } from "react-native";
 import {
   ArrowLeftIcon,
   EllipsisVerticalIcon,
@@ -53,6 +53,19 @@ const NewNote = () => {
     // dispatch(setIsColorPickerVisible(false));
   };
 
+  // Trigger 'goBack' fxn on backhandler
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        goBack();
+        return true;
+      }
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const goBack = () => {
     router.push("/mynotes");
     dispatch(setArticleContent(""));
@@ -63,13 +76,10 @@ const NewNote = () => {
   return (
     <MenuProvider>
       <View
-        style={[
-          tw`bg-[#fef3f2] h-full pt-12 px-4`,
-          { backgroundColor: `${color}` },
-        ]}
+        style={[tw`bg-[#fef3f2] h-full pt-12 px-4`, { backgroundColor: color }]}
       >
         <View style={tw`flex-row items-center justify-between mb-6`}>
-          <Pressable style={tw``} onPress={() => goBack()}>
+          <Pressable onPress={goBack}>
             <ArrowLeftIcon style={tw`mb-2 text-black font-bold`} />
           </Pressable>
           <Pressable onPress={toggleMenu}>
