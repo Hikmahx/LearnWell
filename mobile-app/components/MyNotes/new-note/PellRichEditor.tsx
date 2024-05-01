@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   Platform,
@@ -15,7 +15,7 @@ import {
 import tw from "../../../lib/tailwind";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setArticleContent } from "@/redux/reducers/notesSlice";
+import { setArticleContent, setEditorState } from "@/redux/reducers/notesSlice";
 
 const handleHead = ({ tintColor }) => (
   <Text style={{ color: tintColor }}>H1</Text>
@@ -25,9 +25,17 @@ const PellRichEditor = () => {
   const richText = React.useRef();
 
   const dispatch = useDispatch();
-  const { color, articleContent } = useSelector(
+  const { color, articleContent, editorState } = useSelector(
     (state: RootState) => state.notes
   );
+
+  useEffect(() => {
+    dispatch(setEditorState("editing"));
+
+    if (editorState === "cancelled") {
+      richText.current?.setContentHTML("");
+    }
+  }, [editorState]);
 
   const handleContentChange = (content: string) => {
     dispatch(setArticleContent(content));
@@ -50,6 +58,7 @@ const PellRichEditor = () => {
               onChange={handleContentChange}
               pasteAsPlainText={true}
               initialHeight={250}
+              initialContentHTML={""}
             />
           </View>
         </ScrollView>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { View, Pressable, Modal, Text, Button } from "react-native";
 import {
   ArrowLeftIcon,
@@ -18,7 +18,12 @@ import PellRichEditor from "../../../components/MyNotes/new-note/PellRichEditor"
 import ColorPicker from "react-native-wheel-color-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setColor, setIsColorPickerVisible } from "@/redux/reducers/notesSlice";
+import {
+  setArticleContent,
+  setColor,
+  setEditorState,
+  setIsColorPickerVisible,
+} from "@/redux/reducers/notesSlice";
 
 const NewNote = () => {
   const router = useRouter();
@@ -48,6 +53,13 @@ const NewNote = () => {
     // dispatch(setIsColorPickerVisible(false));
   };
 
+  const goBack = () => {
+    router.push("/mynotes");
+    dispatch(setArticleContent(""));
+    dispatch(setColor("white"));
+    dispatch(setEditorState("cancelled"));
+  };
+
   return (
     <MenuProvider>
       <View
@@ -57,7 +69,7 @@ const NewNote = () => {
         ]}
       >
         <View style={tw`flex-row items-center justify-between mb-6`}>
-          <Pressable style={tw``} onPress={() => router.push("/mynotes")}>
+          <Pressable style={tw``} onPress={() => goBack()}>
             <ArrowLeftIcon style={tw`mb-2 text-black font-bold`} />
           </Pressable>
           <Pressable onPress={toggleMenu}>
