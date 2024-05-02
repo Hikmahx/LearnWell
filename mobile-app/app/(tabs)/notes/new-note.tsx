@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BackHandler, View, Pressable, Modal, Text, Button } from "react-native";
+import { BackHandler, View, Pressable, Modal } from "react-native";
 import {
   ArrowLeftIcon,
   EllipsisVerticalIcon,
@@ -24,6 +24,7 @@ import {
   setEditorState,
   setIsColorPickerVisible,
 } from "@/redux/reducers/notesSlice";
+import ConfirmationModal from "@/components/MyNotes/new-note/ConfirmationModal";
 
 const NewNote = () => {
   const router = useRouter();
@@ -66,11 +67,24 @@ const NewNote = () => {
     return () => backHandler.remove();
   }, []);
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const handleConfirmCancel = (confirmed: boolean) => {
+    if (confirmed) {
+      router.push("/mynotes");
+      dispatch(setArticleContent(""));
+      dispatch(setColor("white"));
+      dispatch(setEditorState("cancelled"));
+    }
+    setIsModalVisible(false);
+  };
+
   const goBack = () => {
-    router.push("/mynotes");
-    dispatch(setArticleContent(""));
-    dispatch(setColor("white"));
-    dispatch(setEditorState("cancelled"));
+    toggleModal();
   };
 
   return (
@@ -82,6 +96,13 @@ const NewNote = () => {
           <Pressable onPress={goBack}>
             <ArrowLeftIcon style={tw`mb-2 text-black font-bold`} />
           </Pressable>
+          {isModalVisible && (
+            <ConfirmationModal
+              visible={isModalVisible}
+              onCancel={() => handleConfirmCancel(false)}
+              onConfirm={() => handleConfirmCancel(true)}
+            />
+          )}
           <Pressable onPress={toggleMenu}>
             <EllipsisVerticalIcon style={tw`mb-2 text-black font-bold`} />
           </Pressable>
