@@ -6,6 +6,7 @@ import topicFile from "../../../topic.json";
 import tw from "../../../lib/tailwind";
 import { ArrowLongLeftIcon } from "react-native-heroicons/solid";
 import Svg, { Path } from "react-native-svg";
+import QuizBox from "@/components/Topics/QuizBox";
 
 const Topic = () => {
   interface TopicData {
@@ -45,7 +46,7 @@ const Topic = () => {
                 </>
               ))}
             </View>
-            <View style={tw``}>
+            <View style={tw`mb-20`}>
               <Text style={tw`text-black text-2xl font-bold mb-4`}>
                 {topicData.title}
               </Text>
@@ -59,6 +60,7 @@ const Topic = () => {
                 }}
               />
             </View>
+            <QuizBox />
           </View>
         </>
       ) : (
