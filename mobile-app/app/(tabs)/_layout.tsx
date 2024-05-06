@@ -128,6 +128,14 @@ export default function AppLayout() {
             tabBarStyle: { display: "none" },
           }}
         />
+        
+        <Tabs.Screen
+          name="quiz"
+          options={{
+            href: null,
+            headerShown: false,
+          }}
+        />
       </Tabs>
     </SafeAreaProvider>
 
