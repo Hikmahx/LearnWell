@@ -1,0 +1,71 @@
+{
+    "quizzes": [
+      {
+        "id": 1,
+        "title": "Addition and Subtraction",
+        "questions": [
+          {
+            "id": 1,
+            "question": "What is 2 + 2?",
+            "options": ["3", "4", "5", "6"],
+            "answer": "4"
+          },
+          {
+            "id": 2,
+            "question": "What is 6 - 2?",
+            "options": ["2", "5", "3", "4"],
+            "answer": "4"
+          },
+          {
+            "id": 3,
+            "question": "What is 10 + 5?",
+            "options": ["14", "15", "12", "11"],
+            "answer": "15"
+          },
+          {
+            "id": 4,
+            "question": "What is 9 - 3?",
+            "options": ["6", "5", "4", "3"],
+            "answer": "6"
+          },
+          {
+            "id": 5,
+            "question": "What is 20 + 7?",
+            "options": ["27", "28", "26", "25"],
+            "answer": "27"
+          },
+          {
+            "id": 6,
+            "question": "What is 15 - 8?",
+            "options": ["7", "6", "5", "9"],
+            "answer": "7"
+          },
+          {
+            "id": 7,
+            "question": "What is 100 + 50?",
+            "options": ["150", "160", "140", "130"],
+            "answer": "150"
+          },
+          {
+            "id": 8,
+            "question": "What is 25 - 10?",
+            "options": ["16", "15", "14", "13"],
+            "answer": "15"
+          },
+          {
+            "id": 9,
+            "question": "What is 40 + 30?",
+            "options": ["70", "69", "68", "67"],
+            "answer": "70"
+          },
+          {
+            "id": 10,
+            "question": "What is 50 - 20?",
+            "options": ["30", "31", "29", "28"],
+            "answer": "30"
+          }
+        ]
+      }
+    ]
+  }
+  
