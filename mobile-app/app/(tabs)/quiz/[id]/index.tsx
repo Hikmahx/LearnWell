@@ -1,5 +1,5 @@
 import React from "react";
-import { subjects } from "../../../subjects.json";
+import { subjects } from "../../../../subjects.json";
 import { Link, useLocalSearchParams } from "expo-router";
 import {
   ScrollView,
@@ -10,7 +10,7 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import tw from "../../../lib/tailwind";
+import tw from "../../../../lib/tailwind";
 import { ArrowLongLeftIcon } from "react-native-heroicons/solid";
 import { ArrowRightIcon } from "react-native-heroicons/mini";
 import Svg, { Path } from "react-native-svg";
