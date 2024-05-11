@@ -44,7 +44,7 @@ const Options = () => {
                 : "border-transparent"
             }`,
           ]}
-          onPress={() => handleOptionPress(index)}
+          onPress={() => !showAnswer && handleOptionPress(index)}
         >
           <View
             style={[
