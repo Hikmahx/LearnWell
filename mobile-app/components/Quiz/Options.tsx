@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Button } from "react-native";
+import { ScrollView, View, Text, Pressable, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import tw from "../../lib/tailwind";
 import { quizzes } from "@/quiz.json";
@@ -23,7 +23,7 @@ const Options = () => {
   };
 
   return (
-    <View>
+    <ScrollView>
       {quizOptions.map((option, index) => (
         <Pressable
           key={index}
@@ -97,8 +97,15 @@ const Options = () => {
           <Text>{option}</Text>
         </Pressable>
       ))}
-      <Button title="Show Answer" onPress={() => setShowAnswer(true)} />
-    </View>
+      <Pressable
+        style={tw`mt-4 px-6 py-3 w-full max-w-lg rounded-md mb-6 ${
+          selectedOption === null ? "bg-gray" : "bg-blue"
+        }`}
+        onPress={() => selectedOption !== null && setShowAnswer(true)}
+      >
+        <Text style={tw`mx-auto text-white`}>Show Answer</Text>
+      </Pressable>
+    </ScrollView>
   );
 };
 
