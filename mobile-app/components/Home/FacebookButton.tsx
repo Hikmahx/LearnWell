@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Button, Image, Text } from "react-native";
+import { View, Button, Image, Text, TouchableOpacity } from "react-native";
 import * as AuthSession from "expo-auth-session";
 import firebase from "firebase/app";
 import {
@@ -13,7 +13,6 @@ import { auth } from "../../utils/firebase";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import * as WebBrowser from "expo-web-browser";
 import tw from "../../lib/tailwind";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Fb from "../../assets/images/fb-icon.png";
 import { FACEBOOK_APP_ID } from "@env";
 import * as Linking from "expo-linking";
@@ -30,14 +29,14 @@ type User = {
   };
 };
 
-export default function App() {
+export default function FacebookButton () {
   const [user, setUser] = useState(null);
 
   // update later: useProxy is deprecated
-  // const redirectUri = AuthSession.makeRedirectUri({
-  //   native: `fb${FACEBOOK_APP_ID}://authorize`,
-  //   useProxy: true,
-  // });
+  const redirectUri = AuthSession.makeRedirectUri({
+    native: `fb${FACEBOOK_APP_ID}://authorize`,
+    useProxy: false,
+  });
 
   const [request, response, promptAsync] = Facebook.useAuthRequest({
     clientId: FACEBOOK_APP_ID,

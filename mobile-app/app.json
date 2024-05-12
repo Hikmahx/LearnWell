@@ -5,6 +5,8 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
+    "currentFullName": "@hikmahx/LearnWell",
+    "originalFullName": "@hikmahx/LearnWell",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
