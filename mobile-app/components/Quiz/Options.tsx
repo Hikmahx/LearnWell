@@ -1,29 +1,38 @@
 import { ScrollView, View, Text, Pressable, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import tw from "../../lib/tailwind";
-import { quizzes } from "@/quiz.json";
 import { XCircleIcon, CheckCircleIcon } from "react-native-heroicons/solid";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setCurrentQuestionIndex, setScore, setSelectedOption, setShowAnswer } from "@/redux/reducers/quizSlice";
 
 const Options = () => {
+  const dispatch = useDispatch();
+  const { currentQuestionIndex, score, quizQuestions, showAnswer, selectedOption } = useSelector(
+    (state: RootState) => state.quiz
+  );
   const [quizOptions, setQuizOptions] = useState<string[]>([]);
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [showAnswer, setShowAnswer] = useState(false);
 
   useEffect(() => {
-    const questionOptions = quizzes[0].questions[1].options;
-    setQuizOptions(questionOptions);
-  }, []);
+    if (quizQuestions.length > 0 && currentQuestionIndex >= 0 && currentQuestionIndex < quizQuestions[0].questions.length) {
+      const questionOptions = quizQuestions[0].questions[currentQuestionIndex].options;
+      setQuizOptions(questionOptions);
+    }
+  }, [currentQuestionIndex, quizQuestions]);
 
   const handleOptionPress = (index: number) => {
-    setSelectedOption(index);
+    dispatch(setSelectedOption(index));
   };
 
   const isCorrectAnswer = (index: number) => {
-    return quizOptions[index] === quizzes[0].questions[1].answer;
+    if (quizQuestions.length > 0 && currentQuestionIndex >= 0 && currentQuestionIndex < quizQuestions[0].questions.length) {
+      return quizOptions[index] === quizQuestions[0].questions[currentQuestionIndex].answer;
+    }
+    return false;
   };
 
   return (
-    <ScrollView>
+    <>
       {quizOptions.map((option, index) => (
         <Pressable
           key={index}
@@ -97,15 +106,8 @@ const Options = () => {
           <Text>{option}</Text>
         </Pressable>
       ))}
-      <Pressable
-        style={tw`mt-4 px-6 py-3 w-full max-w-lg rounded-md mb-6 ${
-          selectedOption === null ? "bg-gray" : "bg-blue"
-        }`}
-        onPress={() => selectedOption !== null && setShowAnswer(true)}
-      >
-        <Text style={tw`mx-auto text-white`}>Show Answer</Text>
-      </Pressable>
-    </ScrollView>
+
+    </>
   );
 };
 
