@@ -3,12 +3,13 @@ import React from "react";
 import { ArrowLongLeftIcon } from "react-native-heroicons/solid";
 import tw from "../../../../lib/tailwind";
 import ProgressBar from "@/components/Quiz/ProgressBar";
+import Options from "@/components/Quiz/Options";
 
 const Questions = () => {
   return (
     <View style={[tw`bg-white`, { minHeight: "100%" }]}>
       <View>
-        <View style={tw`h-fit relative bg-blue`}>
+        <View style={tw`relative bg-blue`}>
           <View style={tw`mt-10 mx-8`}>
             <ArrowLongLeftIcon style={tw`mb-8 text-white `} />
             <View style={tw`h-12 w-12 rounded-full bg-yellow mx-auto`}>
@@ -26,11 +27,9 @@ const Questions = () => {
           </View>
           <ProgressBar toValue={75} />
         </View>
-        <View style={tw`bg-white h-auto`}></View>
-
-        <View
-          style={tw`px-7 max-w-lg w-full mx-auto mb-40 h-full mt-20`}
-        ></View>
+        <View style={tw`px-8 w-full mx-auto mb-40 min-h-full mt-20 relative`}>
+          <Options />
+        </View>
       </View>
     </View>
   );
