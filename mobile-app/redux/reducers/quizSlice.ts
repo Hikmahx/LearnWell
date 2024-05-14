@@ -1,26 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
+import { Quiz } from "./types";
+
+interface QuizState {
+  currentQuestionIndex: number;
+  score: number;
+  quizQuestions: Quiz[];
+  showAnswer: boolean;
+  selectedOption: number | null;
+}
 
 const quizSlice = createSlice({
   name: "quiz",
   initialState: {
-    currentQuestion: 1,
+    currentQuestionIndex: 1,
     score: 0,
     quizQuestions: [],
-  },
+    showAnswer: false,
+    selectedOption: null,
+  } as QuizState,
   reducers: {
-    setQuizQuestion: (state, { payload }) => {
+    setQuizQuestions: (state, { payload }) => {
       state.quizQuestions = payload;
     },
-    setCurrentQuestion: (state, { payload }) => {
-      state.currentQuestion = payload;
+    setCurrentQuestionIndex: (state, { payload }) => {
+      state.currentQuestionIndex = payload;
     },
     setScore: (state, { payload }) => {
       state.score = payload;
     },
+    setShowAnswer: (state, { payload }) => {
+      state.showAnswer = payload;
+    },
+    setSelectedOption: (state, { payload }) => {
+      state.selectedOption = payload;
+    },
   },
 });
 
-export const { setQuizQuestion, setCurrentQuestion, setScore } =
-  quizSlice.actions;
+export const {
+  setQuizQuestions,
+  setCurrentQuestionIndex,
+  setScore,
+  setShowAnswer,
+  setSelectedOption,
+} = quizSlice.actions;
 export default quizSlice.reducer;
