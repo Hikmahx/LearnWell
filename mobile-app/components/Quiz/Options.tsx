@@ -22,6 +22,11 @@ const Options = () => {
 
   const handleOptionPress = (index: number) => {
     dispatch(setSelectedOption(index));
+
+    // Check if the selected option is correct
+    if (isCorrectAnswer(index)) {
+      dispatch(setScore(score + 1));
+    }
   };
 
   const isCorrectAnswer = (index: number) => {
