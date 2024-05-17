@@ -5,13 +5,19 @@ const QuizIdLayout = () => {
   return (
     <>
       <Stack>
-        <Stack.Screen
-          name="index"
+        <Stack.Screen 
+        name="index" 
+        options={{ headerShown: false }}
+         />
+        <Stack.Screen 
+          name="questions" 
           options={{ headerShown: false }}
-        />
+           />
         <Stack.Screen
-          name="questions"
-          options={{ headerShown: false }}
+          name="quiz-completion"
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack>
     </>
