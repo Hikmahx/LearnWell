@@ -14,6 +14,7 @@ import {
   setShowAnswer,
   setSelectedOption,
 } from "@/redux/reducers/quizSlice";
+import { useRouter } from 'expo-router';
 
 const Questions = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Questions = () => {
     showAnswer,
   } = useSelector((state: RootState) => state.quiz);
   const [btnText, setBtnText] = useState("Show Answer");
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(setQuizQuestions(quizzes));
@@ -59,10 +61,8 @@ const Questions = () => {
       if (currentQuestionIndex < quizQuestions[0].questions.length - 1) {
         dispatch(setCurrentQuestionIndex(currentQuestionIndex + 1));
       } else {
-        console.log("redirect");
-        alert(
-          `Quiz finished! You scored ${score} out of ${quizQuestions[0].questions.length}`
-        );
+        router.replace('/quiz/122/quiz-completion');
+
       }
     }
   };
