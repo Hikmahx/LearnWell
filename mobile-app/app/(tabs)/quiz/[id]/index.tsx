@@ -36,7 +36,7 @@ const Quiz = () => {
         >
           <Link
             style={tw`font-semibold text-lg text-black text-center mx-auto w-full flex flex-row items-center justify-center`}
-            href="/home"
+            href="/quiz/122/questions"
           >
             <Text>Let's Go!</Text>
             <ArrowRightIcon style={tw`text-black font-bold ml-2`} />
