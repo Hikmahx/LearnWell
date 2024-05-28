@@ -1,33 +1,45 @@
-import React from "react";
-import { View, Text, Animated, Pressable, ScrollView } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { View, Text, Pressable } from "react-native";
 import tw from "../../../../lib/tailwind";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Trophy from "../../../../assets/images/trophy.svg";
 import { useRouter } from "expo-router";
+import { setScore } from "@/redux/reducers/quizSlice";
+import ConfettiCannon from "react-native-confetti-cannon";
 
 const QuizCompletion = () => {
   const dispatch = useDispatch();
-  const { score, quizQuestions } = useSelector(
-    (state: RootState) => state.quiz
-  );
+  const { score } = useSelector((state: RootState) => state.quiz);
   const router = useRouter();
-  
+  const confettiRef = useRef(null);
+
+  useEffect(() => {
+    dispatch(setScore(6));
+
+    // Trigger confetti on load
+    if (confettiRef.current) {
+      confettiRef.current.start();
+    }
+  }, []);
+
+  console.log("Score:", score);
+
   return (
     <View style={tw`bg-blue w-full h-full`}>
       <View style={tw`m-auto`}>
         <Trophy style={tw`mx-auto mt-16`} />
         <Text style={tw`text-white font-bold mx-auto my-10`}>
-          {score > 5 && "Congratulations, "}You Have Completed This Quiz!
+          {score > 5 ? "Congratulations, " : ""}You Have Completed This Quiz!
         </Text>
         <Text style={tw`text-white tracking-widest text-2xl font-thin mx-auto`}>
           YOUR SCORE
         </Text>
         <View style={tw`flex flex-row items-center justify-center my-6`}>
           <Text
-            style={tw`font-bold text-5xl ${
-              score > 5 ? "text-[#3EA941]" : "text-red-500"
-            }`}
+            style={tw.style(`font-bold text-5xl`, {
+              color: score > 5 ? "#3EA941" : "red",
+            })}
           >
             {score}
           </Text>
@@ -47,6 +59,13 @@ const QuizCompletion = () => {
             <Text style={tw`text-dark-gray text-xl`}>Learn More</Text>
           </Pressable>
         </View>
+        <ConfettiCannon
+          ref={confettiRef}
+          count={20000}
+          origin={{ x: 0, y: 0 }}
+          fadeOut={true}
+          autoStart={false} // Disable auto start so we can control it manually
+        />
       </View>
     </View>
   );
