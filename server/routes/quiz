@@ -1,11 +1,11 @@
-import express from "express";
-import { body } from "express-validator";
-import {
+const express = require("express");
+const { body } = require("express-validator");
+const {
   deleteQuiz,
   getQuiz,
   getQuizById,
   updateQuiz,
-} from "../controllers/quiz";
+} = require("../controllers/quiz");
 
 const router = express.Router();
 
@@ -20,3 +20,5 @@ router.put("/:id", updateQuiz);
 
 // DELETE QUIZ
 router.delete("/:id", deleteQuiz);
+
+module.exports = router;
