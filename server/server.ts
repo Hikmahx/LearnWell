@@ -5,6 +5,7 @@ const path = require("path");
 const cors = require("cors");
 const subjects = require("./routes/subjects");
 const topics = require("./routes/topics");
+const quiz = require("./routes/quiz");
 
 dotenv.config({ path: "./config/config.env" });
 connectDB();
@@ -19,5 +20,6 @@ app.use(cors());
 // ROUTES
 app.use("/api/subjects", subjects);
 app.use("/api/topics", topics);
+app.use("/api/quiz", quiz);
 
 app.listen(PORT, () => console.log("This is listening on PORT: " + PORT));
