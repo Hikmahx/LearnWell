@@ -2,6 +2,7 @@ const Quiz = require("../models/Quiz");
 import { Response, Request } from "express";
 import { validationResult } from "express-validator";
 import mongoose from "mongoose";
+const Topic = require("../models/topic");
 
 // @ route GET /api/quiz
 // @ desc  Fetch all quiz
@@ -45,21 +46,22 @@ export const createQuiz = async (req: Request, res: Response) => {
   }
 
   try {
-    const { title, questions, topicId, question, options, answer } = req.body;
+    const { title, questions, topicId } = req.body;
 
-    const topic = await topicId.findById(topicId);
+    const topic = await Topic.findById(topicId);
 
     if (!topic) {
       return res.status(404).json({ error: "Topic not found" });
     }
 
+    // The questions array should have at least one object containing the question in its array
+    if (!questions || questions.length === 0) {
+      return res.status(400).json({msg: "Questions can not be empty"});
+    }
     const newQuiz = new Quiz({
       title,
       questions,
       topic: topicId,
-      question,
-      options,
-      answer,
     });
 
     const quiz = await newQuiz.save();
@@ -81,9 +83,9 @@ export const updateQuiz = async (req: Request, res: Response) => {
   }
 
   try {
-    const { title, questions, topicId, question, options, answer } = req.body;
+    const { title, questions, topicId } = req.body;
 
-    const topic = await topicId.findById(topicId);
+    const topic = await Topic.findById(topicId);
 
     if (!topic) {
       return res.status(404).json({ error: "Topic not found" });
@@ -97,7 +99,7 @@ export const updateQuiz = async (req: Request, res: Response) => {
 
     const updatedQuiz = await Quiz.findByIdAndUpdate(
       req.params.id,
-      { $set: { title, questions, topic: topicId, question, options, answer } },
+      { $set: { title, questions, topic: topicId } },
       { new: true }
     );
 
@@ -118,7 +120,7 @@ export const deleteQuiz = async (req: Request, res: Response) => {
       return res.status(404).json({ msg: "Quiz not found" });
     }
 
-    res.status(200).json({msg: "Quiz is successfully deleted"})
+    res.status(200).json({ msg: "Quiz is successfully deleted" });
   } catch (err: any) {
     console.error(err.message);
     res.status(500).send("Server Error");
