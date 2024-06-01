@@ -115,7 +115,7 @@ export const updateQuiz = async (req: Request, res: Response) => {
 // @ access Private
 export const deleteQuiz = async (req: Request, res: Response) => {
   try {
-    const quiz = await Quiz.findById(req.params.id);
+    const quiz = await Quiz.findByIdAndDelete(req.params.id);
     if (!quiz) {
       return res.status(404).json({ msg: "Quiz not found" });
     }
