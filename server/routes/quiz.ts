@@ -1,10 +1,13 @@
 import express from "express";
 import { body } from "express-validator";
 import {
+  addQuestion,
   createQuiz,
+  deleteQuestion,
   deleteQuiz,
   getQuiz,
   getQuizById,
+  updateQuestion,
   updateQuiz,
 } from "../controllers/quiz";
 
@@ -24,5 +27,15 @@ router.put("/:id", updateQuiz);
 
 // DELETE QUIZ
 router.delete("/:id", deleteQuiz);
+
+// ADD NEW QUESTION
+router.post('/:id/question', addQuestion);
+
+// UPDATE QUESTION
+router.put('/:quizId/question/:questionId', updateQuestion);
+
+// DELETE QUESTION
+router.delete('/:quizId/question/:questionId', deleteQuestion);
+
 
 module.exports = router;
