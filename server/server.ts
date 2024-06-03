@@ -8,7 +8,7 @@ const user = require("./routes/user");
 const subjects = require("./routes/subjects");
 const topics = require("./routes/topics");
 const quiz = require("./routes/quiz");
-const notes = require("./routes/notes");
+const note = require("./routes/note");
 
 dotenv.config({ path: "./config/config.env" });
 connectDB();
@@ -26,6 +26,6 @@ app.use("/api/users", user);
 app.use("/api/subjects", subjects);
 app.use("/api/topics", topics);
 app.use("/api/quiz", quiz);
-app.use("api/notes", notes);
+app.use("api/note", note);
 
 app.listen(PORT, () => console.log("This is listening on PORT: " + PORT));
