@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const { connectDB } = require("./config/db");
 const path = require("path");
 const cors = require("cors");
+const auth = require("./routes/auth");
+const user = require("./routes/user");
 const subjects = require("./routes/subjects");
 const topics = require("./routes/topics");
 const quiz = require("./routes/quiz");
@@ -19,6 +21,8 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 // ROUTES
+app.use("/api/auth", auth);
+app.use("/api/users", user);
 app.use("/api/subjects", subjects);
 app.use("/api/topics", topics);
 app.use("/api/quiz", quiz);
