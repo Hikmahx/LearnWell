@@ -1,6 +1,7 @@
 import { Schema, model, Document } from "mongoose";
 
 export interface INote extends Document {
+  user: any;
   noteColor: string;
   title: string;
   summary: string;
@@ -11,6 +12,11 @@ export interface INote extends Document {
 }
 
 const noteSchema = new Schema<INote>({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   noteColor: { type: String, required: true },
   title: { type: String, required: true },
   summary: { type: String, required: true },
