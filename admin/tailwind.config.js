@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
       },
+      screens: {
+        '2xl': '1336px'
+      },
       colors: {
         "blue": "#146BFB",
         "soft-red": "#EA5353",

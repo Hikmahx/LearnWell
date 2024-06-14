@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Animated } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text } from "react-native";
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+  Easing,
+} from "react-native-reanimated";
 import tw from "../../lib/tailwind";
 
 interface ProgressBarProps {
@@ -7,17 +13,27 @@ interface ProgressBarProps {
 }
 
 const ProgressBar = ({ toValue }: ProgressBarProps) => {
-  const [progress, setProgress] = useState(new Animated.Value(0));
+  // const progress = useSharedValue(0);
 
-  useEffect(() => {
-    Animated.timing(progress, {
-      toValue: 75,
-      duration: 2000,
-      useNativeDriver: true,
-    }).start();
+  // useEffect(() => {
+  //   progress.value = withTiming(toValue, {
+  //     duration: 2000,
+  //     easing: Easing.linear,
+  //   });
+  // }, [toValue]);
 
-    console.log(progress);
-  }, [toValue]);
+  const randomWidth = useSharedValue(10);
+
+  const config = {
+    duration: 500,
+    easing: Easing.bezier(0.5, 0.01, 0, 1),
+  };
+
+  const style = useAnimatedStyle(() => {
+    return {
+      width: withTiming(randomWidth.value, config),
+    };
+  });
 
   return (
     <View style={tw`h-1 bg-gray bg-opacity-30`}>
@@ -25,15 +41,12 @@ const ProgressBar = ({ toValue }: ProgressBarProps) => {
         style={[
           tw`h-1 bg-yellow`,
           {
-            width: progress.interpolate({
-              inputRange: [0, 100],
-              outputRange: ["0%", "100%"],
-              extrapolate: "clamp",
-            }),
+            width: `${toValue}%`,
           },
+          style,
         ]}
       />
-      {/* <Text>{progress._value}</Text> */}
+      {/* <Text>{toValue}</Text> */}
     </View>
   );
 };

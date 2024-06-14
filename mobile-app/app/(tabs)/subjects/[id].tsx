@@ -51,7 +51,7 @@ const Topic = () => {
           </Svg>
         </View>
       </View>
-      <Link href={`/(tabs)/topics/topic`} style={tw`absolute inset-0`}></Link>
+      <Link href={`/topics/topic`} style={tw`absolute inset-0`}></Link>
     </View>
   );
 

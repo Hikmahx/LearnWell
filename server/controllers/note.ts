@@ -2,13 +2,19 @@ const Note = require("../models/Note");
 import { Response, Request } from "express";
 import { validationResult } from "express-validator";
 import mongoose from "mongoose";
+import { IUser } from "../models/User";
+
+interface AuthRequest extends Request {
+  user?: IUser;
+}
 
 // @ route  GET /api/notes
 // @ desc   Fetch all notes
 // @ access Private
-export const getNotes = async (req: Request, res: Response) => {
+export const getNotes = async (req: AuthRequest, res: Response) => {
   try {
-    const notes = await Note.find();
+    const userId = req.user?.id;
+    const notes = await Note.find({user: userId});
 
     res.status(200).json(notes);
   } catch (err: any) {
@@ -38,7 +44,7 @@ export const getNoteById = async (req: Request, res: Response) => {
 // @ route  POST /api/notes
 // @ desc   Create new note
 // @ access Public
-export const createNote = async (req: Request, res: Response) => {
+export const createNote = async (req: AuthRequest, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -48,6 +54,7 @@ export const createNote = async (req: Request, res: Response) => {
       req.body;
 
     const newNote = new Note({
+      user: req.user?.id,
       noteColor,
       title,
       summary,
