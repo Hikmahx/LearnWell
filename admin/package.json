@@ -47,7 +47,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
     "@types/redux-mock-store": "^1.0.6",
+    "babel-jest": "^29.7.0",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.3.1",
     "tailwindcss": "^3.4.3"
   }
 }
