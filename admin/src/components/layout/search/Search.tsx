@@ -18,6 +18,7 @@ const Search = () => {
         Search
       </label>
       <form
+        data-testid="search-form"
         onSubmit={handleSubmit(submitForm)}
         onChange={() => {
           const value = getValues("search");
