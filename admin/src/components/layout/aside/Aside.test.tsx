@@ -6,7 +6,6 @@ import "@testing-library/jest-dom/extend-expect";
 import { BrowserRouter } from "react-router-dom";
 import Aside from "./Aside";
 import { RootState } from "../../../redux/store";
-import userEvent from "@testing-library/user-event";
 import { asideToggle } from "../../../redux/reducers/sharedSlice";
 
 const mockStore = configureStore<Partial<RootState>>([]);
@@ -43,7 +42,7 @@ describe("Testing Aside Component", () => {
     expect(screen.getByText("Users")).toBeInTheDocument();
   });
 
-  test("toggle aside when clicking on link", () => {
+  test("toggle aside when clicking on Subject link", () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -56,5 +55,79 @@ describe("Testing Aside Component", () => {
     fireEvent.click(navLink);
 
     expect(store.dispatch).toHaveBeenCalledWith(asideToggle(false));
+  });
+
+  test("toggle aside when clicking on Dashboard link", () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Aside />
+        </Provider>
+      </BrowserRouter>
+    );
+
+    const navLink = screen.getByRole("link", { name: "Dashboard" });
+    fireEvent.click(navLink);
+
+    expect(store.dispatch).toHaveBeenCalledWith(asideToggle(false));
+  });
+
+  test("toggle aside when clicking on Users link", () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Aside />
+        </Provider>
+      </BrowserRouter>
+    );
+
+    const navLink = screen.getByRole("link", { name: "Users" });
+    fireEvent.click(navLink);
+
+    expect(store.dispatch).toHaveBeenCalledWith(asideToggle(false));
+  });
+
+  test("toggle aside when clicking on Quiz link", () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Aside />
+        </Provider>
+      </BrowserRouter>
+    );
+
+    const navLink = screen.getByRole("link", { name: "Quiz" });
+    fireEvent.click(navLink);
+
+    expect(store.dispatch).toHaveBeenCalledWith(asideToggle(false));
+  });
+
+  test("applies correct class based on showAside state", () => {
+    const { rerender } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Aside />
+        </Provider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText("Dashboard")).toHaveClass("sr-only");
+
+    store = mockStore({
+      shared: {
+        showAside: true,
+        searchText: "",
+      },
+    });
+
+    rerender(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Aside />
+        </Provider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText("Dashboard")).not.toHaveClass("sr-only");
   });
 });
