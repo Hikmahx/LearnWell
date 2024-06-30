@@ -9,9 +9,13 @@ const Search = () => {
   const { searchText } = useSelector((state: RootState) => state.shared);
   const { register, handleSubmit, getValues } = useForm<{ search: string }>();
 
+
+  type FormValue = { search: string };
+  
   const submitForm = (data: { search: string }) => {
-    console.log(data);
+    dispatch(searchInput(data.search));
   };
+
   return (
     <div className="">
       <label htmlFor="search" className="block text-sm font-medium sr-only">
