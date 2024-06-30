@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { asideToggle } from "../../../redux/reducers/sharedSlice";
@@ -9,8 +9,6 @@ const Aside = () => {
   const dispatch = useDispatch();
 
   const { showAside } = useSelector((state: RootState) => state.shared);
-
-  let location = useLocation();
 
   return (
     <aside
