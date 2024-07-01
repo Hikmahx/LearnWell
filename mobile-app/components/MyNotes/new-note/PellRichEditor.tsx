@@ -15,7 +15,7 @@ import {
 import tw from "../../../lib/tailwind";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setArticleContent, setEditorState } from "@/redux/reducers/notesSlice";
+import { setArticleContent, setEditorState } from "../../../redux/reducers/notesSlice";
 
 const handleHead = ({ tintColor }) => (
   <Text style={{ color: tintColor }}>H1</Text>

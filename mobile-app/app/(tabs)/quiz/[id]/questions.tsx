@@ -2,9 +2,9 @@ import { View, Text, Animated, Pressable, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ArrowLongLeftIcon } from "react-native-heroicons/solid";
 import tw from "../../../../lib/tailwind";
-import ProgressBar from "@/components/Quiz/ProgressBar";
-import Options from "@/components/Quiz/Options";
-import { quizzes } from "@/quiz.json";
+import ProgressBar from "../../../../components/Quiz/ProgressBar";
+import Options from "../../../../components/Quiz/Options";
+import { quizzes } from "../../../../quiz.json";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import {
@@ -13,7 +13,7 @@ import {
   setScore,
   setShowAnswer,
   setSelectedOption,
-} from "@/redux/reducers/quizSlice";
+} from "../../../../redux/reducers/quizSlice";
 import { useRouter } from 'expo-router';
 
 const Questions = () => {

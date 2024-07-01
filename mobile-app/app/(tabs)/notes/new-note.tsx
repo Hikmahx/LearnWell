@@ -23,8 +23,8 @@ import {
   setColor,
   setEditorState,
   setIsColorPickerVisible,
-} from "@/redux/reducers/notesSlice";
-import ConfirmationModal from "@/components/MyNotes/new-note/ConfirmationModal";
+} from "../../../redux/reducers/notesSlice";
+import ConfirmationModal from "../../../components/MyNotes/new-note/ConfirmationModal";
 
 const NewNote = () => {
   const router = useRouter();

@@ -6,7 +6,7 @@ import topicFile from "../../../topic.json";
 import tw from "../../../lib/tailwind";
 import { ArrowLongLeftIcon } from "react-native-heroicons/solid";
 import Svg, { Path } from "react-native-svg";
-import QuizBox from "@/components/Topics/QuizBox";
+import QuizBox from "../../../components/Topics/QuizBox";
 
 const Topic = () => {
   interface TopicData {

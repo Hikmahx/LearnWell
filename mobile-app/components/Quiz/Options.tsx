@@ -4,7 +4,7 @@ import tw from "../../lib/tailwind";
 import { XCircleIcon, CheckCircleIcon } from "react-native-heroicons/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setCurrentQuestionIndex, setScore, setSelectedOption, setShowAnswer } from "@/redux/reducers/quizSlice";
+import { setCurrentQuestionIndex, setScore, setSelectedOption, setShowAnswer } from "../../redux/reducers/quizSlice";
 
 const Options = () => {
   const dispatch = useDispatch();

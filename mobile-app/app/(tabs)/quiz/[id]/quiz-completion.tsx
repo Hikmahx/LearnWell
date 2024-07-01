@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Trophy from "../../../../assets/images/trophy.svg";
 import { useRouter } from "expo-router";
-import { setScore } from "@/redux/reducers/quizSlice";
+import { setScore } from "../../../../redux/reducers/quizSlice";
 import ConfettiCannon from "react-native-confetti-cannon";
 
 const QuizCompletion = () => {
