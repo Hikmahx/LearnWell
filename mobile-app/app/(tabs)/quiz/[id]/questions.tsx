@@ -69,7 +69,7 @@ const Questions = () => {
 
   return (
     <View style={[tw`bg-white`, { minHeight: "100%" }]}>
-      {quizQuestions.length > 0 && (
+      {quizQuestions.length > 0 ? (
         <View>
           <View style={tw`relative bg-blue`}>
             <View style={tw`mt-10 mx-8`}>
@@ -104,6 +104,10 @@ const Questions = () => {
               </Pressable>
             </ScrollView>
           </View>
+        </View>
+      ) : (
+        <View style={tw`flex-row justify-center items-center`}>
+          <Text style={tw`text-white`}>No Quiz Questions</Text>
         </View>
       )}
     </View>
