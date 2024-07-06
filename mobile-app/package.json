@@ -60,7 +60,7 @@
     "react-native-htmlview": "^0.17.0",
     "react-native-pell-rich-editor": "^1.9.0",
     "react-native-popup-menu": "^0.16.1",
-    "react-native-reanimated": "^3.12.1",
+    "react-native-reanimated": "3.3.0",
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-svg": "^15.1.0",
