@@ -18,9 +18,11 @@ const QuizCompletion = () => {
     dispatch(setScore(6));
 
     // Trigger confetti on load
-    if (confettiRef.current) {
-      confettiRef.current.start();
-    }
+    setTimeout(() => {
+      if (confettiRef.current) {
+        confettiRef.current.start();
+      }
+    }, 500); // Delay to ensure the component has mounted
   }, []);
 
   console.log("Score:", score);
@@ -59,14 +61,14 @@ const QuizCompletion = () => {
             <Text style={tw`text-dark-gray text-xl`}>Learn More</Text>
           </Pressable>
         </View>
-        <ConfettiCannon
-          ref={confettiRef}
-          count={20000}
-          origin={{ x: 0, y: 0 }}
-          fadeOut={true}
-          autoStart={false} // Disable auto start so we can control it manually
-        />
       </View>
+      <ConfettiCannon
+        ref={confettiRef}
+        count={200}
+        origin={{ x: 0, y: 0 }}
+        fadeOut={true}
+        autoStart={false} // Disable auto start so we can control it manually
+      />
     </View>
   );
 };
